@@ -1,12 +1,13 @@
 .container {
   background: blueviolet;
   padding: 2rem;
-  min-height: 70vh;
+  min-height: 45vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
+  border-radius:1rem;
 }
 
 .title {

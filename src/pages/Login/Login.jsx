@@ -1,0 +1,34 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './Login.module.css';
+
+function Login() {
+
+
+  return (
+    <div className="login-container">
+      <h2 className={styles.title}>登录</h2>
+        <div className={styles.loginName}>
+          <span className={styles.inputLabel}>用户</span>
+          <input
+            type="text"
+            className={styles.username}
+            placeholder="请输入用户名"  // 初始提示文字
+          />
+        </div>
+
+        <div className={styles.loginPsw}>
+          <span className={styles.inputLabel}>密码</span>
+          <input
+            type="text"
+            className={styles.userpsw}
+            placeholder="请输入用户密码"  // 初始提示文字
+          />
+        </div>
+      <p className={styles.forgetpsw}>忘记密码?</p>
+
+    </div>
+  );
+}
+
+export default Login; 
