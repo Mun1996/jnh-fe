@@ -6,7 +6,7 @@ function Login() {
 
 
   return (
-    <div className="login-container">
+    <div className={styles.testStyle}>
       <h2 className={styles.title}>登录</h2>
         <div className={styles.loginName}>
           <span className={styles.inputLabel}>用户</span>
@@ -26,7 +26,7 @@ function Login() {
           />
         </div>
       <p className={styles.forgetpsw}>忘记密码?</p>
-
+        <button className={styles.loginEnter}>登录</button>
     </div>
   );
 }

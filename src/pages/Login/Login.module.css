@@ -1,7 +1,19 @@
-.login-container{
-  background: white;
-  padding: 2rem;
-  min-height: 45vh;
+.testStyle {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.testStyle{
+  padding: 1rem;
+  height: 30%;
+  border: 1px solid #ccc;
+  border-radius:12px;
 }
 
 .title {
@@ -14,7 +26,7 @@
 .loginPsw
 {
   display:flex;
-  margin-bottom:10px;
+  margin-bottom:10px;  
 }
 
 .inputLabel {
@@ -49,5 +61,11 @@
 }
 
 .forgetpsw:hover {
-   text-decoration: underline;
+  text-decoration: underline;
+}
+
+.loginEnter {
+  width:8rem;
+  border-radius:20px;
+  background-color:rgb(46, 154, 255);
 }
