@@ -22,13 +22,17 @@
 }
 
 .loginButton {
-  padding: 0.8rem 2.5rem;
-  background-color: white;
-  color: blueviolet;
-  border: none;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
+  width:80%;
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:10px;
+  font-size:16px;
+  font-weight:700;
+  color:white;
+  box-shadow: -5px 10px 10px #D3D3D3;
 } 
+
+.loginButton:active {
+  box-shadow: -5px 10px 10px #BFBFBF;
+}
