@@ -1,0 +1,9 @@
+{
+    "environment" : "dev",
+    "BASE_URL": "https://jobsnearhome-be-rp-dev.azurewebsites.net",
+    "IMG_BASE_URL": "https://jobsnearhome-be-rp-dev.azurewebsites.net/",
+    "api":{
+      "production" : "https://jobsnearhome-be-rp-dev.azurewebsites.net/api",
+      "dev": "https://jobsnearhome-be-rp-dev.azurewebsites.net/api"
+    }
+}

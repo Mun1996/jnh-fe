@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useRequest } from '../../utils/request';
+import { useRequest } from '../utils/request';
 import styles from './Login.module.css';
 
 function Login() {
@@ -16,7 +16,8 @@ function Login() {
   }
 
   useEffect(() => {
-    // login();
+    console.log(111)
+    login();
   }, []);
 
   return (
@@ -40,7 +41,7 @@ function Login() {
           />
         </div>
         <p className={styles.forgetpsw}>忘记密码?</p>
-        <button className={styles.loginEnter} onClick={login}>登录</button>
+        <button className={styles.loginEnter}>登录</button>
     </div>
   );
 }
