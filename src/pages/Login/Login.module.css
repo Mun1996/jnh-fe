@@ -1,40 +1,43 @@
+.navBar {
+  padding:0;
+  display:flex;
+  border-bottom:0.1rem solid #B2B2B2;
+  width:100%;
+}
+
+.returnBtn {
+  cursor: pointer;
+  color:#007AFF;
+}
+
 .testStyle {
   padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  width: 70%;
+  width: 85%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.testStyle{
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius:12px;
-}
-
 .title {
   margin-top:15px;
   font-size: 1.5rem;
-  margin-bottom: 2rem;
+  font-weight:700;
+  color:black;
+  margin-bottom: 1.5rem;
 }
 
-.loginName,
+.loginEmail,
 .loginPsw
 {
+  padding:0.4rem;
   display:flex;
   margin-bottom:10px;  
+  border:1.3px solid #E3E3E3;
+  border-radius:4px;
 }
 
-.inputLabel {
-  color:black;
-  margin-right:15px;
-  width: 60px;
-}
-
-.username,
+.useremail,
 .userpsw
 {
   border-color:grey;
@@ -44,29 +47,47 @@
   height:1.4rem;
   color:black;
   width: 100%;
+  font-size: 16px;
+}
+
+.loginEmail::placeholder {
+  font-size: 14px;
+  color: #999;
 }
 
 .loginPsw {
   margin-top:20px;
 }
 
+.loginEnter {
+  width:100%;
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:10px;
+  font-size:15px;
+  font-weight:700;
+  color:white;
+  box-shadow: -5px 10px 10px #D3D3D3;
+}
+
+.loginEnter:active {
+  box-shadow: -5px 10px 10px #BFBFBF;
+}
+
 
 .forgetpsw {
   cursor: pointer;
   background-color:white;
-  color:#3a7bc8;
-  margin-top:20px;
-  font-size:0.8rem;
+  color:#00C26F;
+  margin-top:15px;
+  font-size:0.85rem;
   align-items:right;
-  text-align:right;
+  text-align:center;
+  display: inline-block;
 }
 
 .forgetpsw:hover {
   text-decoration: underline;
 }
 
-.loginEnter {
-  width:8rem;
-  border-radius:20px;
-  background-color:rgb(46, 154, 255);
-}

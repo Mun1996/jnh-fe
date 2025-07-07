@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import { useRequest } from '../../utils/request';
 import styles from './Login.module.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons';
+import { Input } from 'antd-mobile';
+import { LeftOutline } from 'antd-mobile-icons';
 
 function Login() {
   const request = useRequest();
@@ -15,33 +20,51 @@ function Login() {
     console.log(response);
   }
 
-  useEffect(() => {
-    // login();
-  }, []);
+  const [value, setValue] = useState('')
+  const [visible, setVisible] = useState(false)
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/');
+  };
 
   return (
+    <>
+    <div className={styles.navBar}>
+      <p onClick={handleClick} className={styles.returnBtn}><LeftOutline /> welcome
+      </p>
+      <p>Login by Email</p>
+    </div>
+    
     <div className={styles.testStyle}>
-      <h2 className={styles.title}>登录</h2>
-        <div className={styles.loginName}>
-          <span className={styles.inputLabel}>用户</span>
-          <input
-            type="text"
-            className={styles.username}
-            placeholder="请输入用户名"  // 初始提示文字
-          />
+      <h2 className={styles.title}>Login by Email</h2>
+        <div className={styles.loginEmail}>
+        <Input
+          className={styles.useremail}
+          placeholder='Email address'
+          value={value}
+          onChange={val => {
+            setValue(val)
+          }}
+        />
         </div>
 
         <div className={styles.loginPsw}>
-          <span className={styles.inputLabel}>密码</span>
-          <input
-            type="text"
-            className={styles.userpsw}
-            placeholder="请输入用户密码"  // 初始提示文字
+         <div className={styles.password}>
+          <Input
+            className={styles.usrpsw}
+            placeholder='Password'
+            type={visible ? 'text' : 'password'}
           />
+          <div className={styles.eye}>
+          </div>
         </div>
-        <p className={styles.forgetpsw}>忘记密码?</p>
-        <button className={styles.loginEnter} onClick={login}>登录</button>
+        </div>
+        <button className={styles.loginEnter} onClick={login}>Login</button>
+        <p className={styles.forgetpsw}>Forget passward?</p>
     </div>
+    </>
   );
 }
 
