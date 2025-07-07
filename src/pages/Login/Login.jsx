@@ -7,7 +7,24 @@ import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons';
 import { Input } from 'antd-mobile';
 import { LeftOutline } from 'antd-mobile-icons';
 
-function Login() {
+const HeaderBar = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/');
+  };
+  return (
+   <div className={styles.navBar}>
+      <div className={styles.returnBtn} onClick={handleClick}>
+        <LeftOutline />
+      </div>
+      <p className={styles.navTitle}>Login by Email</p>
+      <div style={{ width: '24px' }}></div>
+    </div>
+  )
+}
+
+const Login = () => {
   const request = useRequest();
 
   const login = async () => {
@@ -23,22 +40,12 @@ function Login() {
   const [value, setValue] = useState('')
   const [visible, setVisible] = useState(false)
 
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/');
-  };
-
   return (
     <>
-    <div className={styles.navBar}>
-      <p onClick={handleClick} className={styles.returnBtn}><LeftOutline /> welcome
-      </p>
-      <p>Login by Email</p>
-    </div>
-    
-    <div className={styles.testStyle}>
-      <h2 className={styles.title}>Login by Email</h2>
+    <div>
+      <HeaderBar />
+      <div className={styles.testStyle}>
+        <h2 className={styles.title}>Login by Email</h2>
         <div className={styles.loginEmail}>
         <Input
           className={styles.useremail}
@@ -51,7 +58,7 @@ function Login() {
         </div>
 
         <div className={styles.loginPsw}>
-         <div className={styles.password}>
+        <div className={styles.password}>
           <Input
             className={styles.usrpsw}
             placeholder='Password'
@@ -63,6 +70,7 @@ function Login() {
         </div>
         <button className={styles.loginEnter} onClick={login}>Login</button>
         <p className={styles.forgetpsw}>Forget passward?</p>
+      </div>
     </div>
     </>
   );
