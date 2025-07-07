@@ -16,64 +16,69 @@ const HeaderBar = () => {
   return (
    <div className={styles.navBar}>
       <div className={styles.returnBtn} onClick={handleClick}>
-        <LeftOutline />
+        <LeftOutline />Welcome
       </div>
       <p className={styles.navTitle}>Login by Email</p>
-      <div style={{ width: '24px' }}></div>
+      <div style={{ width: '60px' }}></div>
     </div>
   )
 }
 
 const Login = () => {
-  const request = useRequest();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [visible, setVisible] = useState(false);
+
+  const navigate = useNavigate();
+
+  const testEmail = '562172940@qq.com';
+  const testPassword = 'admin123';
 
   const login = async () => {
-    const email = "562172940@qq.com";
-    const password = "admin123";
-    const response = await request.post("auth/loginEmail", {
-      email,
-      password,
-    });
-    console.log(response);
-  }
-
-  const [value, setValue] = useState('')
-  const [visible, setVisible] = useState(false)
+    if (email === testEmail && password === testPassword) {
+      alert('Login successfully!');
+    } else {
+      alert('Login failed. Please check your credentials.');
+    }
+  };
 
   return (
-    <>
     <div>
       <HeaderBar />
       <div className={styles.testStyle}>
         <h2 className={styles.title}>Login by Email</h2>
+
         <div className={styles.loginEmail}>
-        <Input
-          className={styles.useremail}
-          placeholder='Email address'
-          value={value}
-          onChange={val => {
-            setValue(val)
-          }}
-        />
+          <Input
+            className={styles.useremail}
+            placeholder="Email address"
+            value={email}
+            onChange={val => setEmail(val)}
+            clearable
+          />
         </div>
 
         <div className={styles.loginPsw}>
-        <div className={styles.password}>
-          <Input
-            className={styles.usrpsw}
-            placeholder='Password'
-            type={visible ? 'text' : 'password'}
-          />
-          <div className={styles.eye}>
+          <div className={styles.password}>
+            <Input
+              className={styles.usrpsw}
+              placeholder="Password"
+              type={visible ? 'text' : 'password'}
+              value={password}
+              onChange={val => setPassword(val)}
+              clearable
+            />
+            <div className={styles.eye} onClick={() => setVisible(!visible)}>
+              {visible ? <EyeOutline /> : <EyeInvisibleOutline />}
+            </div>
           </div>
         </div>
-        </div>
+
         <button className={styles.loginEnter} onClick={login}>Login</button>
-        <p className={styles.forgetpsw}>Forget passward?</p>
+        <p className={styles.forgetpsw}>Forget password?</p>
       </div>
     </div>
-    </>
   );
-}
+};
 
-export default Login; 
+export default Login;
