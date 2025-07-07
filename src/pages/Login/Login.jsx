@@ -25,7 +25,7 @@ function Login() {
             placeholder="请输入用户密码"  // 初始提示文字
           />
         </div>
-      <p className={styles.forgetpsw}>忘记密码?</p>
+        <p className={styles.forgetpsw}>忘记密码?</p>
         <button className={styles.loginEnter}>登录</button>
     </div>
   );
