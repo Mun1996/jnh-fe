@@ -1,0 +1,62 @@
+.codeSending {
+  display:flex;
+  padding:0;
+  width:80%;
+  margin:0 auto;
+  position: 'relative';
+  margin-bottom:30px;
+}
+
+.enterEmail {
+  border:2px solid #E3E3E3;
+  border-radius:7px;
+  padding:0.4rem;
+  flex:60%;
+}
+
+.sendcode {
+  padding:0.4rem 0.7rem 0.4rem 0.7rem;
+  color:white;
+  flex:30%;
+  font-weight:700;
+  background-color:#00C26F;
+  border-radius:7px;
+}
+
+.veritificationEmail {
+  width:80%;
+  border:2px solid #E3E3E3;
+  border-radius:7px;
+  padding:0.4rem;
+  margin: 0 auto;
+  margin-bottom:18px;
+}
+
+
+
+.pswinput 
+{
+  padding:0.4rem;
+  display:flex;
+  width:80%; 
+  border:2px solid #E3E3E3;
+  border-radius:7px;
+  margin: 0 auto;
+  margin-bottom:18px;
+}
+
+.Resetpsw {
+  width:80%;
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:10px;
+  font-size:16px;
+  font-weight:700;
+  color:white;
+  box-shadow: -5px 10px 10px #D3D3D3;
+}
+
+.Resetpsw:active {
+  box-shadow: -5px 10px 10px #BFBFBF;
+}

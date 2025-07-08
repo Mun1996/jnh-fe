@@ -31,28 +31,31 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const testEmail = '562172940@qq.com';
-  const testPassword = 'admin123';
-
   const login = async () => {
-    if (email === testEmail && password === testPassword) {
-      const email = "562172940@qq.com";
-      const password = "admin123";
-      const response = await request.post("auth/loginEmail", {
-        email,
-        password,
-      });
-      if(response) {
-        Toast.show({
-          content: 'Login successfully!',
-        })
-      }
-    } else {
+    if (!email || !password) {
       Toast.show({
-        content: 'Login failed. Please check your credentials.',
-      })
+        content: 'Please enter both email and password.',
+      });
+      return;
     }
+
+    navigate('/employee')
+
+    // const response = await request.post("auth/loginEmail", {
+    //   email,
+    //   password,
+    // });
+    // if(response) {
+    //   Toast.show({
+    //     content: 'Login successfully!',
+    //   });
+    // } else {
+    //   Toast.show({
+    //     content: 'Login failed. Please check your credentials.',
+    //   });
+    // }
   };
+
 
   return (
     <div>

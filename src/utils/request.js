@@ -70,16 +70,16 @@ export function useRequest() {
         if ([200, 201, 204].includes(response.status)) {
           return response.data;
         } else if (response.status === 401) {
-          const newToken = await refreshAuthToken();
-          if (newToken) {
-            const config = response.config;
-            config.headers["Authorization"] = "Bearer " + newToken;
-            return axiosInstance(config);
-          } else {
-            localStorage.removeItem("user");
-            navigate("/", { replace: true });
-            return Promise.reject(response);
-          }
+          // const newToken = await refreshAuthToken();
+          // if (newToken) {
+          //   const config = response.config;
+          //   config.headers["Authorization"] = "Bearer " + newToken;
+          //   return axiosInstance(config);
+          // } else {
+          //   localStorage.removeItem("user");
+          //   navigate("/", { replace: true });
+          //   return Promise.reject(response);
+          // }
         } else {
           return Promise.reject(response);
         }

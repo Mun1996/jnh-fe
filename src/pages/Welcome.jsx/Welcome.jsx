@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Home.module.css';
+import styles from './Welcome.module.css';
 
-function Home() {
+function Welcome() {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -30,4 +30,4 @@ function Home() {
   );
 }
 
-export default Home; 
+export default Welcome; 
