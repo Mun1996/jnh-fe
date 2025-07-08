@@ -1,24 +1,27 @@
-.container {
-  background: blueviolet;
-  padding: 2rem;
-  min-height: 45vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  border-radius:1rem;
+.logo {
+  max-width: 75%; 
+  max-height: 75%; 
+  height: auto;  
+
 }
 
 .title {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight:700;
+  margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-bottom: 2rem;
   text-align: center;
+}
+
+.footerlogin {
+  position: fixed;      
+  bottom: 3rem;
+  width:100%;
+  padding:0;
 }
 
 .loginButton {
@@ -35,4 +38,18 @@
 
 .loginButton:active {
   box-shadow: -5px 10px 10px #BFBFBF;
+}
+
+.registerSign {
+  display:flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.clickRegister {
+  color:#00C26F;
+}
+
+.clickRegister:hover {
+  text-decoration: underline;
 }
