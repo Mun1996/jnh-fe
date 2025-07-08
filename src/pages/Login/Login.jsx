@@ -27,32 +27,33 @@ const Login = () => {
   const [email, setEmail] = useState('562172940@qq.com');
   const [password, setPassword] = useState('admin123');
   const [visible, setVisible] = useState(false);
-   const request = useRequest();
+  const request = useRequest();
 
   const navigate = useNavigate();
 
-  const testEmail = '562172940@qq.com';
-  const testPassword = 'admin123';
-
   const login = async () => {
-    if (email === testEmail && password === testPassword) {
-      const email = "562172940@qq.com";
-      const password = "admin123";
-      const response = await request.post("auth/loginEmail", {
-        email,
-        password,
+    if (!email || !password) {
+      Toast.show({
+        content: 'Please enter both email and password.',
       });
-      if(response) {
-        Toast.show({
-          content: 'Login successfully!',
-        })
-      }
+      return;
+    }
+
+    const response = await request.post("auth/loginEmail", {
+      email,
+      password,
+    });
+    if(response) {
+      Toast.show({
+        content: 'Login successfully!',
+      });
     } else {
       Toast.show({
         content: 'Login failed. Please check your credentials.',
-      })
+      });
     }
   };
+
 
   return (
     <div>
