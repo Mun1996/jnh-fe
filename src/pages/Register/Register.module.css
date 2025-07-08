@@ -1,0 +1,32 @@
+.chooseIdentity {
+  margin-top:50%;
+}
+
+.Busniess,
+.Jobseeker {
+  color:white;
+  background-color:#00C26F;
+  font-size:16px;
+  font-weight:700;
+  margin:0 10px 0 10px;
+}
+
+
+.rtlogin {
+  width:80%;
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:10px;
+  font-size:15px;
+  font-weight:700;
+  color:white;
+  box-shadow: -5px 10px 10px #D3D3D3;
+}
+
+.backtoLogin {
+  position:fixed;      
+  bottom: 3rem;
+  width:100%;
+  padding:0;
+}

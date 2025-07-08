@@ -23,7 +23,7 @@ function Home() {
         </button>
         <div className={styles.registerSign}>
           <p>Not yet registered?</p>
-          <p className={styles.clickRegister}>Please register here</p>
+          <p className={styles.clickRegister}  onClick={() => navigate('/register')}>Please register here</p>
         </div>
       </div>
     </div>
