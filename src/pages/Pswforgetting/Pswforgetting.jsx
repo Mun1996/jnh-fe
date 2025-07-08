@@ -29,8 +29,17 @@ const pswforgetting = () => {
   const [value, setValue] = useState('')
   const [visible, setVisible] = useState(false)
   return (
-    <div>
-      <p style={{fontWeight:'700',fontSize:'16px',width:'80%'}}>Reset password</p>
+    <>
+    <div className={styles.navBar}>
+      <div className={styles.returnBtn} onClick={() => navigate('/Login')}>
+        <LeftOutline />Login by Email
+      </div>
+      <p className={styles.navTitle}>Reset Password</p>
+      <div style={{width:'90px'}}> </div>
+    </div>
+
+    <div className={styles.container}>
+      <p style={{fontWeight:'500',fontSize:'17px',width:'127px'}}>Reset password</p>
 
       <div className={styles.codeSending}>
         <Input
@@ -39,30 +48,30 @@ const pswforgetting = () => {
           onChange={val => {setValue(val)}}
           className={styles.enterEmail}
         />
-        <div style={{ width: '10%' }}></div>
         <button className={styles.sendcode}>Send Code</button>
       </div>
-        
-      <Input
-        placeholder='Enter veritification code'
-        value={value}
-        onChange={val => {setValue(val)}}
-        className={styles.veritificationEmail}
-      />
+
+      <div className={styles.veritification}>
+        <Input
+          placeholder='Enter veritification code'
+          value={value}
+          onChange={val => {setValue(val)}}
+        />
+      </div>
       
-      <div style={{ position: 'relative'}}>
         <PswInput
           placeholder="Enter new password"
         />
         <PswInput
           placeholder="Confirm new password"
         />
-      </div>
-      
+            
 
       <button className={styles.Resetpsw}>Reset password
       </button>
+
     </div>
+    </>
   );
 };
 
