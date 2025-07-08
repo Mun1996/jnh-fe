@@ -90,7 +90,7 @@ const Login = () => {
         </div>
 
         <button className={styles.loginEnter} onClick={login}>Login</button>
-        <p className={styles.forgetpsw}>Forget password?</p>
+        <p className={styles.forgetpsw} onClick={() => navigate('/pswforgetting')}>Forget password?</p>
       </div>
     </div>
   );

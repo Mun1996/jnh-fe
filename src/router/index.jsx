@@ -5,6 +5,7 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register'; 
 import Home from '../pages/Employee/Home/Home';
 import EmptyJobs from '../pages/Employee/EmptyJobs/EmptyJobs';
+import Pswforgetting from '../pages/Pswforgetting/Pswforgetting';
 import App from '../App';
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: 'emptyJobs',
         element: <EmptyJobs />
+      },
+      {
+        path:'pswforgetting',
+        element:<Pswforgetting/>
       }
     ]
   }
