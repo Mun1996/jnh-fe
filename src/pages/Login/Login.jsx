@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
 import { useRequest } from '../../utils/request';
 import styles from './Login.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons';
-import { Input } from 'antd-mobile';
+import { Input, Toast } from 'antd-mobile';
 import { LeftOutline } from 'antd-mobile-icons';
 
 const HeaderBar = () => {
@@ -25,9 +24,10 @@ const HeaderBar = () => {
 }
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('562172940@qq.com');
+  const [password, setPassword] = useState('admin123');
   const [visible, setVisible] = useState(false);
+   const request = useRequest();
 
   const navigate = useNavigate();
 
@@ -36,9 +36,21 @@ const Login = () => {
 
   const login = async () => {
     if (email === testEmail && password === testPassword) {
-      alert('Login successfully!');
+      const email = "562172940@qq.com";
+      const password = "admin123";
+      const response = await request.post("auth/loginEmail", {
+        email,
+        password,
+      });
+      if(response) {
+        Toast.show({
+          content: 'Login successfully!',
+        })
+      }
     } else {
-      alert('Login failed. Please check your credentials.');
+      Toast.show({
+        content: 'Login failed. Please check your credentials.',
+      })
     }
   };
 
