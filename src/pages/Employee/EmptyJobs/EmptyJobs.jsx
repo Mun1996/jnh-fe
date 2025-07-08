@@ -1,16 +1,16 @@
 import React from 'react';
 import TabBar from '../../../components/TabBar/TabBar';
-import styles from './Home.module.css';
+import styles from './EmptyJobs.module.css';
 
-const Home = () => {
+const EmptyJobs = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        Home
+        EmptyJobs
       </div>
       <TabBar />
     </div>
   );
 };
 
-export default Home; 
+export default EmptyJobs; 

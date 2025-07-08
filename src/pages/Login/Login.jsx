@@ -39,19 +39,21 @@ const Login = () => {
       return;
     }
 
-    const response = await request.post("auth/loginEmail", {
-      email,
-      password,
-    });
-    if(response) {
-      Toast.show({
-        content: 'Login successfully!',
-      });
-    } else {
-      Toast.show({
-        content: 'Login failed. Please check your credentials.',
-      });
-    }
+    navigate('/employee')
+
+    // const response = await request.post("auth/loginEmail", {
+    //   email,
+    //   password,
+    // });
+    // if(response) {
+    //   Toast.show({
+    //     content: 'Login successfully!',
+    //   });
+    // } else {
+    //   Toast.show({
+    //     content: 'Login failed. Please check your credentials.',
+    //   });
+    // }
   };
 
 
