@@ -63,8 +63,11 @@ const PswInput = ({ value, onChange, placeholder }) => {
 const pswforgetting = () => {
   const navigate = useNavigate();
 
-  const [value, setValue] = useState('')
-  const [visible, setVisible] = useState(false)
+  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
+  const [newpsw, setNewpsw] = useState('');
+  const [rewritepsw, setRewritepsw] = useState('');
+
   return (
     <>
     <div className={styles.navBar}>
@@ -81,8 +84,8 @@ const pswforgetting = () => {
       <div className={styles.codeSending}>
         <Input
           placeholder='Enter Email'
-          value={value}
-          onChange={val => {setValue(val)}}
+          value={email}
+          onChange={val => {setEmail(val)}}
           className={styles.enterEmail}
         />
         <CountTimeBtn />
@@ -91,16 +94,20 @@ const pswforgetting = () => {
       <div className={styles.veritification}>
         <Input
           placeholder='Enter veritification code'
-          value={value}
-          onChange={val => {setValue(val)}}
+          value={code}
+          onChange={val => {setCode(val)}}
         />
       </div>
       
         <PswInput
           placeholder="Enter new password"
+          value={newpsw}
+          onChange={val => setNewpsw(val)}
         />
         <PswInput
           placeholder="Confirm new password"
+          value={rewritepsw}
+          onChange={val => setRewritepsw(val)}
         />
             
 
