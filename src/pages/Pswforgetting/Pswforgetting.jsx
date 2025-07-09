@@ -1,8 +1,45 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect,useRef } from 'react';
 import { LeftOutline,EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons';
 import { Input } from 'antd-mobile';
 import styles from './pswforgetting.module.css';
+
+const CountTimeBtn = () => {
+  const [btnText, setBtnText] = useState('send code');
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [time, setTime] = useState(60); 
+  const timerRef = useRef(null); 
+
+  useEffect(() => {
+    if (btnDisabled && time > 0) {
+      timerRef.current = setTimeout(() => {
+        setTime( t => t - 1);
+      }, 1000);
+      setBtnText(`${time}s`);
+    }
+
+    if (btnDisabled && time === 0) {
+      setBtnDisabled(false);
+      setBtnText('send code');
+      setTime(60); 
+    }
+
+    return () => clearTimeout(timerRef.current); 
+  }, [time, btnDisabled]);
+
+  const handleClick = () => {
+    if (btnDisabled) return;
+    setBtnDisabled(true);
+    setTime(59); 
+  };
+
+  return (
+    <button onClick={handleClick} disabled={btnDisabled} className={styles.sendcode}>
+      {btnText}
+    </button>
+  );
+};
+
 
 const PswInput = ({ value, onChange, placeholder }) => {
   const [visible, setVisible] = useState(false);
@@ -48,7 +85,7 @@ const pswforgetting = () => {
           onChange={val => {setValue(val)}}
           className={styles.enterEmail}
         />
-        <button className={styles.sendcode}>Send Code</button>
+        <CountTimeBtn />
       </div>
 
       <div className={styles.veritification}>

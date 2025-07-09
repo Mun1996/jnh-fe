@@ -49,6 +49,13 @@
   border-radius:6px;
 }
 
+.sendcode:disabled {
+  background-color: #DFDFDF;
+  border:3px solid #CCCCCC;
+  cursor:not-allowed;
+  color:#ADADAD;
+}
+
 .veritification,
 .pswinput 
 {
