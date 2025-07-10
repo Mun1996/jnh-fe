@@ -1,26 +1,37 @@
 .navBar {
   background-color: #00C26F;
-
   border-bottom-left-radius:15px;
   border-bottom-right-radius:15px;
 }
 
 .locationBar {
   display:flex;
-  padding:0.7rem;
+  align-items: center;
+  padding:10px
 }
 
 .locationSelector {
-  margin-left:1rem;
   border:2px solid #B2B2B2;
   border-radius:7px;
-  height:40px;
-  width:100%;
+  /* height:40px; */
+  max-width: 75vw; 
+  padding: 0 10px;
+}
+
+.locationIcon {
+  width: 30px;
+  margin-right: 10px;
+}
+.locationDropdown {
+  width: 100%;
 }
 
 .dropdownTitle {
   font-size:15px;
   color:#3E4241;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .locationList {

@@ -103,12 +103,12 @@ function LocationDropdown() {
   const locationOptions = ['Location 1', 'Location 2', 'Location 3'];
 
   return (
-    <Dropdown closeOnMaskClick={false} closeOnClickAway={false} className={styles.locationSelector}>
+    <Dropdown className={styles.locationSelector}>
      <Dropdown.Item
         key='location'
         title={
           <div className={styles.dropdownTitle}>
-            <span>{selectedLocation || 'Location'}</span>
+            <span>{selectedLocation || 'LocationLocationLocationLocationLocationLocationLocationLocationLocationLocation'}</span>
           </div>
         }
       >
@@ -139,8 +139,12 @@ const Home = () => {
         <div style={{height:'1.2rem'}}></div>
         <p style={{margin:'0',color:'white'}}>Current Location</p>
         <div className={styles.locationBar}>
-          <EnvironmentOutline color='white' fontSize={40} width={50} />
-          <LocationDropdown />
+            <div className={styles.locationIcon}>
+                <EnvironmentOutline color='white' fontSize={30} />
+            </div>
+            <div className={styles.locationDropdown}>
+                <LocationDropdown />
+            </div>
         </div>
       </div>
 
