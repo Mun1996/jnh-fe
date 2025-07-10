@@ -1,8 +1,9 @@
 import React ,{ useState }from 'react';
 import TabBar from '../../../components/TabBar/TabBar';
+import NavBar from '../../../components/TabBar/NavBar/NavBar';
 import styles from './Home.module.css';
-import { EnvironmentOutline,LoopOutline } from 'antd-mobile-icons';
-import { Dropdown,FloatingPanel } from 'antd-mobile';
+import { LoopOutline } from 'antd-mobile-icons';
+import { FloatingPanel } from 'antd-mobile';
 
 function JobPanel() {
   const anchors = [window.innerHeight * 0.3, window.innerHeight * 0.6, window.innerHeight * 0.85];
@@ -75,8 +76,7 @@ function JobPanel() {
     
     <div className={styles.noJob}>
         <img src="src\assets\images\images\no-data.png"></img>
-        <p>Sorry,there's no job nearby</p>
-        
+        <p style={{margin:'1rem 0 0.5rem 0'}}>Sorry,there's no job nearby</p>
         <button className={styles.loopBtn}><LoopOutline /></button>
     </div>
 
@@ -108,57 +108,11 @@ function JobPanel() {
   );
 };
 
-
-function LocationDropdown() {
-  const [selectedLocation, setSelectedLocation] = useState(null);
-
-  const locationOptions = ['Location 1', 'Location 2', 'Location 3'];
-
-  return (
-    <Dropdown className={styles.locationSelector}>
-     <Dropdown.Item
-        key='location'
-        title={
-          <div className={styles.dropdownTitle}>
-            <span>{selectedLocation || 'LocationLocationLocationLocationLocationLocationLocationLocationLocationLocation'}</span>
-          </div>
-        }
-      >
-        <div className={styles.locationList}>
-          {locationOptions.map((loc, index) => (
-            <div
-              key={index}
-              className={styles.locationOption}
-              onClick={() => setSelectedLocation(loc)}
-            >
-              {loc}
-            </div>
-          ))}
-        </div>
-      </Dropdown.Item>
-    </Dropdown>
-  );
-}
-
 const Home = () => {
 
-  /*const anchors = [100, window.innerHeight * 0.6, window.innerHeight * 0.6]*/
-
   return (
-
     <div className={styles.container}>
-      <div className={styles.navBar}>
-        <div style={{height:'1.2rem'}}></div>
-        <p style={{margin:'0',color:'white'}}>Current Location</p>
-        <div className={styles.locationBar}>
-            <div className={styles.locationIcon}>
-                <EnvironmentOutline color='white' fontSize={30} />
-            </div>
-            <div className={styles.locationDropdown}>
-                <LocationDropdown />
-            </div>
-        </div>
-      </div>
+      <NavBar />
       <div >
         <img src="src/assets/images/images/map.png" className={styles.map}></img>
       </div>
