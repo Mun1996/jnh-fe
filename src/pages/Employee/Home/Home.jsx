@@ -1,14 +1,19 @@
 import React ,{ useState }from 'react';
 import TabBar from '../../../components/TabBar/TabBar';
 import styles from './Home.module.css';
-import { EnvironmentOutline } from 'antd-mobile-icons';
+import { EnvironmentOutline,DownOutline } from 'antd-mobile-icons';
 import { Dropdown,FloatingPanel } from 'antd-mobile';
 
 function JobPanel() {
-  const anchors = [100, window.innerHeight * 0.6, window.innerHeight * 0.9];
+  const anchors = [100, window.innerHeight * 0.6, window.innerHeight * 0.8];
   const [activeTab, setActiveTab] = useState('upcoming');
 
+    const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+  };
+
   const upcomingJob = (
+    <>
     <div className={styles.jobItem}>
       <img
         className={styles.jobPic}
@@ -26,6 +31,25 @@ function JobPanel() {
         <div className={styles.jobSalary}>1600 $/Month</div>
       </div>
     </div>
+
+    <div className={styles.jobItem}>
+      <img
+        className={styles.jobPic}
+        src="src/assets/images/images/map.png"
+        alt="job picture"
+      />
+      <div className={styles.jobContent}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className={styles.jobTitle}>Ticket Seller</div>
+          <div className={styles.jobDistance}>12.7km</div>
+        </div>
+        <div className={styles.jobDescription}>
+          Selling movies' tickets
+        </div>
+        <div className={styles.jobSalary}>1300 $/Month</div>
+      </div>
+    </div>
+    </>
   );
 
   const recentJob = (
@@ -52,13 +76,13 @@ function JobPanel() {
     <FloatingPanel anchors={anchors}>
       <div className={styles.jobType}>
         <div
-          className={styles.upcomingType}
+          className={`${styles.upcomingType} ${activeTab === 'upcoming' ? styles.activeTab : ''}`}
           onClick={() => setActiveTab('upcoming')}
         >
           UPCOMING JOBS
         </div>
         <div
-          className={styles.recentType}
+          className={`${styles.recentType} ${activeTab === 'recent' ? styles.activeTab : ''}`}
           onClick={() => setActiveTab('recent')}
         >
           RECENT JOBS
@@ -70,10 +94,39 @@ function JobPanel() {
       </div>
     </FloatingPanel>
   );
+};
+
+
+function LocationDropdown() {
+  const [selectedLocation, setSelectedLocation] = useState(null);
+
+  const locationOptions = ['Location 1', 'Location 2', 'Location 3'];
+
+  return (
+    <Dropdown closeOnMaskClick={false} closeOnClickAway={false} className={styles.locationSelector}>
+     <Dropdown.Item
+        key='location'
+        title={
+          <div className={styles.dropdownTitle}>
+            <span>{selectedLocation || 'Location'}</span>
+          </div>
+        }
+      >
+        <div className={styles.locationList}>
+          {locationOptions.map((loc, index) => (
+            <div
+              key={index}
+              className={styles.locationOption}
+              onClick={() => setSelectedLocation(loc)}
+            >
+              {loc}
+            </div>
+          ))}
+        </div>
+      </Dropdown.Item>
+    </Dropdown>
+  );
 }
-
-
-
 
 const Home = () => {
 
@@ -87,54 +140,12 @@ const Home = () => {
         <p style={{margin:'0',color:'white'}}>Current Location</p>
         <div className={styles.locationBar}>
           <EnvironmentOutline color='white' fontSize={40} width={50} />
-          
-          <Dropdown closeOnMaskClick={false} closeOnClickAway={false} className={styles.locationSelector}>
-            <Dropdown.Item key='sorter' title='Location'>
-              <div style={{ padding: 7 }}>
-              Location 1
-              <br />
-              Location 2
-              <br />
-              Location 3
-              <br />
-              </div>
-            </Dropdown.Item>
-          </Dropdown>
+          <LocationDropdown />
         </div>
       </div>
 
       <JobPanel />
- {/*      <FloatingPanel anchors={anchors}>
-        <dev className={styles.jobType}>
-          <div className={styles.upcomingType}>UPCOMING JOBS</div>
-          <div className={styles.recentType}>RECENT JOBS</div>
-        </dev>
-
-        <dev className={styles.jobMsg}>
-          
-
-
-          <div className={styles.jobItem}>
-            <img
-              className={styles.jobPic}
-              src="src/assets/images/images/map.png"
-              alt="job picture"
-            />
-            <div className={styles.jobContent}>
-              <div style={{display:'flex',justifyContent:'space-between'}}>
-                <div className={styles.jobTitle}>Office Coffee Provider 70</div>
-                <div className={styles.jobDistance}>30km</div>
-              </div>
-              <div className={styles.jobDescription}>Offer Coffee for others and make cookies and balabalabala</div>
-              <div className={styles.jobSalary}>1600 $/Month</div>
-            </div>
-          </div>
-            
-
-
-        </dev>
-      </FloatingPanel>
- */}
+      
       <TabBar />
     </div>
   );

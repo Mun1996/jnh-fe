@@ -18,8 +18,21 @@
   width:100%;
 }
 
+.dropdownTitle {
+  font-size:15px;
+  color:#3E4241;
+}
 
+.locationList {
+  padding: 7px;
+}
 
+.locationOption {
+  padding:5px;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #E6E6E6;
+}
 
 
 
@@ -43,6 +56,9 @@
   width:8.5rem;
 }
 
+.activeTab {
+  border-bottom: 2px solid black;
+}
 
 .jobMsg {
   margin:0 auto;
