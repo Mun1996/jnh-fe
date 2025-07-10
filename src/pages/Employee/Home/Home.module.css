@@ -55,12 +55,15 @@
   border-bottom: 1px solid #E6E6E6;
 }
 
+.noJob {
+  margin-top:3.5rem;
+}
 
-
-
-
-
-
+.loopBtn{
+  background-color:transparent; ;
+  color:#00C26F;
+  stroke-width:11;
+}
 
 .jobType {
   margin-top:0.4rem;

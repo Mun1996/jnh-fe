@@ -1,7 +1,7 @@
 import React ,{ useState }from 'react';
 import TabBar from '../../../components/TabBar/TabBar';
 import styles from './Home.module.css';
-import { EnvironmentOutline,DownOutline } from 'antd-mobile-icons';
+import { EnvironmentOutline,LoopOutline } from 'antd-mobile-icons';
 import { Dropdown,FloatingPanel } from 'antd-mobile';
 
 function JobPanel() {
@@ -54,7 +54,8 @@ function JobPanel() {
   );
 
   const recentJob = (
-    <div className={styles.jobItem}>
+    <>
+    {/*<div className={styles.jobItem}>
       <img
         className={styles.jobPic}
         src="src/assets/images/images/map.png"
@@ -70,7 +71,16 @@ function JobPanel() {
         </div>
         <div className={styles.jobSalary}>1200 $/Month</div>
       </div>
+    </div>*/}
+    
+    <div className={styles.noJob}>
+        <img src="src\assets\images\images\no-data.png"></img>
+        <p>Sorry,there's no job nearby</p>
+        
+        <button className={styles.loopBtn}><LoopOutline /></button>
     </div>
+
+    </>
   );
 
   return (
@@ -92,6 +102,7 @@ function JobPanel() {
 
       <div className={styles.jobMsg}>
         {activeTab === 'upcoming' ? upcomingJob : recentJob}
+
       </div>
     </FloatingPanel>
   );
