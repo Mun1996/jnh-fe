@@ -1,7 +1,17 @@
+.container {
+  display:flex;
+  flex-direction: column; 
+}
+
 .navBar {
   background-color: #00C26F;
   border-bottom-left-radius:15px;
   border-bottom-right-radius:15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
 .locationBar {
@@ -128,7 +138,6 @@
   text-align: right;
 }
 
-
-
-
-
+.map {
+  height:20rem;
+}

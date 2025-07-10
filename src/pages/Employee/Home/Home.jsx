@@ -5,7 +5,8 @@ import { EnvironmentOutline,DownOutline } from 'antd-mobile-icons';
 import { Dropdown,FloatingPanel } from 'antd-mobile';
 
 function JobPanel() {
-  const anchors = [100, window.innerHeight * 0.6, window.innerHeight * 0.8];
+  const anchors = [window.innerHeight * 0.3, window.innerHeight * 0.6, window.innerHeight * 0.85];
+
   const [activeTab, setActiveTab] = useState('upcoming');
 
     const handleTabClick = (tabName) => {
@@ -130,7 +131,7 @@ function LocationDropdown() {
 
 const Home = () => {
 
-  const anchors = [100, window.innerHeight * 0.6, window.innerHeight * 0.6]
+  /*const anchors = [100, window.innerHeight * 0.6, window.innerHeight * 0.6]*/
 
   return (
 
@@ -147,9 +148,10 @@ const Home = () => {
             </div>
         </div>
       </div>
-
-      <JobPanel />
-      
+      <div >
+        <img src="src/assets/images/images/map.png" className={styles.map}></img>
+      </div>
+      <JobPanel />  
       <TabBar />
     </div>
   );
