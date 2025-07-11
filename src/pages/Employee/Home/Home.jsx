@@ -10,7 +10,7 @@ function JobPanel() {
 
   const [activeTab, setActiveTab] = useState('upcoming');
 
-    const handleTabClick = (tabName) => {
+  const handleTabClick = (tabName) => {
     setActiveTab(tabName);
   };
 
