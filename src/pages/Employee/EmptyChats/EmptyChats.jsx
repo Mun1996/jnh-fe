@@ -1,63 +1,93 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { PullToRefresh } from 'antd-mobile';
+import { sleep } from 'antd-mobile/es/utils/sleep';
 import TabBar from '../../../components/TabBar/TabBar';
 import styles from './EmptyChats.module.css';
 
-
 const EmptyChats = () => {
+  const [chatData] = useState([
+    {
+      id: 1,
+      company: 'Time Traveller Ptd Ltd',
+      job: 'test11',
+      dialog: '333',
+      time: '15:44',
+      image: 'src/assets/images/images/map.png',
+    },
+    {
+      id: 2,
+      company: 'Super Consulting Pte Ltd',
+      job: 'Office Coffee Brewer',
+      dialog: 'Hi',
+      time: 'Nov 6',
+      image: 'src/assets/images/images/map.png',
+    },
+  ]);
+
+  const onRefresh = async () => {
+    await sleep(1000); 
+  };
 
   return (
-
-    //需要实现下拉刷新
-    <div className={styles.container}>
-      <div className={styles.PageName}>
-        <p className={styles.title}>Chats</p>
-      </div>
-      <div className={styles.content}>
-
-        <div className={styles.chatDetails}>
-          <div className={styles.chatItem}>
-            <img
-              className={styles.chatPic}
-              src="src/assets/images/images/map.png"
-              alt="job picture"
-            />
-          </div>
-          <div className={styles.chatContent}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div className={styles.companyName}>Time Traveller Ptd Ltd</div>
-              <div className={styles.lstchatTime}>15:44</div>
-            </div>
-            <div className={styles.position}>(Job:test11)</div>
-            <div style={{ display: 'flex', justifyContent: 'space-between',marginTop:'5px' }}>
-              <div className={styles.lstDialog}>333</div>{/*需要处理内容溢出，定长，多的部分用...显示，这几个都要*/ }
-            </div>
-          </div>
-        </div>
-        <div className={styles.chatDetails}>
-          <div className={styles.chatItem}>
-            <img
-              className={styles.chatPic}
-              src="src/assets/images/images/map.png"
-              alt="job picture"
-            />
-          </div>
-          <div className={styles.chatContent}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div className={styles.companyName}>Super Consulting Pte Ltd</div>
-              <div className={styles.lstchatTime}>Nov 6</div>
-            </div>
-            <div className={styles.position}>(Job:Office Coffee Brewer)</div>
-            <div style={{ display: 'flex', justifyContent: 'space-between',marginTop:'5px' }}>
-              <div className={styles.lstDialog}>,,</div>
-            </div>
-          </div>
+    <>
+      <div className={styles.container}>
+        <div className={styles.PageName}>
+          <p className={styles.title}>Chats</p>
         </div>
 
-      </div>
+        <PullToRefresh 
+          onRefresh={onRefresh}
+          renderText={(status) => {
+            switch (status) {
+              case 'pulling':
+                return <div>Pull down to refresh</div>;
+              case 'canRelease':
+                return <div>Release to refresh</div>;
+              case 'refreshing':
+                return <div>Loading...</div>;
+              case 'complete':
+                return <div>Refresh successful</div>;
+              default:
+                return null;
+          }
+        }}>
+          <div className={styles.content}>
+            {chatData.map((chat) => (
+              <div className={styles.chatDetails} key={chat.id}>
+                <div className={styles.chatItem}>
+                  <img
+                    className={styles.chatPic}
+                    src={chat.image}
+                    alt="job picture"
+                  />
+                </div>
+                <div className={styles.chatContent}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div style={{ width: '13rem' }}>
+                      <div className={styles.companyName}>{chat.company}</div>
+                      <div className={styles.position}>(Job:{chat.job})</div>
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          marginTop: '5px',
+                        }}
+                      >
+                        <div className={styles.lstDialog}>{chat.dialog}</div>
+                      </div>
+                    </div>
+                    <div className={styles.lstchatTime}>{chat.time}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </PullToRefresh>
+
         <TabBar />
       </div>
-      
+    </>
   );
-}
+};
 
-export default EmptyChats; 
+export default EmptyChats;

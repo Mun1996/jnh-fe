@@ -2,7 +2,7 @@
   background-color: #F5F5F5;
   display: flex;
   flex-direction: column;
-  height:100%;
+  height:100vh;
   padding-bottom: 56px; /* 为底部TabBar留出空间 */
 }
 
@@ -21,9 +21,6 @@
 }
 
 .content {
-  display: flex;
-  flex:1;
-  flex-direction: column;
   padding:5px 15px 0 15px;
   margin:0;
 }
@@ -57,12 +54,17 @@
   color:black;
   font-weight:700;
   font-size:16px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .lstchatTime {
   font-size: 15px;
   font-weight: 600;
   color: #9C9C9C;
+  text-align:right;
 }
 
 .position {
@@ -70,6 +72,9 @@
   font-weight:700;
   font-size:16px;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .lstDialog {
@@ -77,4 +82,7 @@
   color: #000;
   font-weight: 500;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
