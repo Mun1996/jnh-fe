@@ -1,4 +1,5 @@
 import React ,{ useState }from 'react';
+import { useNavigate } from 'react-router-dom';
 import TabBar from '../../../components/TabBar/TabBar';
 import NavBar from '../../../components/TabBar/NavBar/NavBar';
 import styles from './Home.module.css';
@@ -14,9 +15,11 @@ function JobPanel() {
     setActiveTab(tabName);
   };
 
+  const navigate = useNavigate();
+
   const upcomingJob = (
     <>
-    <div className={styles.jobItem}>
+    <div className={styles.jobItem} onClick={() => navigate('/jobdetail')}>
       <img
         className={styles.jobPic}
         src="src/assets/images/images/map.png"
@@ -34,7 +37,7 @@ function JobPanel() {
       </div>
     </div>
 
-    <div className={styles.jobItem}>
+    <div className={styles.jobItem} onClick={() => navigate('/jobdetail')}>
       <img
         className={styles.jobPic}
         src="src/assets/images/images/map.png"
@@ -56,7 +59,7 @@ function JobPanel() {
 
   const recentJob = (
     <>
-    {/*<div className={styles.jobItem}>
+    {/*<div className={styles.jobItem} onClick={() => navigate('/jobdetail')}>
       <img
         className={styles.jobPic}
         src="src/assets/images/images/map.png"

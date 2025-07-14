@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SearchBar,Popup, Slider } from 'antd-mobile'
 import { FilterOutline,LoopOutline } from 'antd-mobile-icons';
 import TabBar from '../../../components/TabBar/TabBar';
@@ -55,6 +56,7 @@ const EmptyJobs = () => {
   const [searchValue, setSearchValue] = useState('');
   const [visible5, setVisible5] = useState(false);
 
+  const navigate = useNavigate();
   return (
     <div className={styles.container}>
       <NavBar />
@@ -74,7 +76,7 @@ const EmptyJobs = () => {
               <FilterPopup visible={visible5} onClose={() => setVisible5(false)} />
           </div>
           <div className={styles.jobMsg}>
-                <div className={styles.jobItem}>
+                <div className={styles.jobItem} onClick={() => navigate('/jobdetail')}>
                   <img
                     className={styles.jobPic}
                     src="src/assets/images/images/map.png"

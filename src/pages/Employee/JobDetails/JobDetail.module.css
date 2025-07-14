@@ -1,0 +1,106 @@
+.jobDetailPage {
+  display: flex;
+  flex-direction: column;
+}
+
+/*navBar样式*/
+.navBar {
+  padding:2px 10px;
+  display:flex;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  border-bottom:1px solid #AEAEAE;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.returnBtn {
+  cursor: pointer;
+  color:#007AFF;
+}
+
+.navTitle {
+  flex: 1;
+  text-align: center;
+  font-weight: 550;
+  font-size: 16px;
+  margin: 0;
+}
+
+/*工作详情*/
+.detailContainer {
+  min-height:100vh;
+  background-color: #F8F8F8;
+  padding:3.8rem 1.8rem 75px 1.8rem;/* 为底部ApplyBar留出空间 */
+}
+
+.jobImg {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+
+.jobName {
+  color:#333333;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+/*job details*/
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0;
+  color: #555555;
+  text-align:left;
+}
+
+.content {
+  font-size: 0.95rem;
+  color: #777777;
+  text-align:left;
+}
+
+/*applyBar*/
+.applyBar {
+  height:70px;
+  position: fixed;
+  background-color: white;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.ChatBtn {
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:10px;
+  font-size:15px;
+  font-weight:600;
+  color:white;
+  box-shadow: -3px 5px 5px #D3D3D3;
+  margin-right:3rem;
+}
+
+.ApplyBtn {
+  width:10rem;
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:10px;
+  font-size:15px;
+  font-weight:600;
+  color:white;
+  box-shadow: -3px 5px 5px #D3D3D3;
+}
