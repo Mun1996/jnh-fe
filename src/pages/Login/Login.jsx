@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons';
 import { Input, Toast } from 'antd-mobile';
 import { LeftOutline } from 'antd-mobile-icons';
+import { useAuth } from "../../contexts/AuthContext";
 
 const HeaderBar = () => {
   const navigate = useNavigate();
@@ -24,7 +25,9 @@ const HeaderBar = () => {
 }
 
 const Login = () => {
-  const [email, setEmail] = useState('562172940@qq.com');
+  const { setAuth } = useAuth();
+  // const [email, setEmail] = useState('562172940@qq.com');
+  const [email, setEmail] = useState('songzewen1996@gmail.com');
   const [password, setPassword] = useState('admin123');
   const [visible, setVisible] = useState(false);
   const request = useRequest();
@@ -39,21 +42,37 @@ const Login = () => {
       return;
     }
 
-    navigate('/employee')
+    // navigate('/employee')
 
-    // const response = await request.post("auth/loginEmail", {
-    //   email,
-    //   password,
-    // });
-    // if(response) {
-    //   Toast.show({
-    //     content: 'Login successfully!',
-    //   });
-    // } else {
-    //   Toast.show({
-    //     content: 'Login failed. Please check your credentials.',
-    //   });
-    // }
+    const response = await request.post("auth/loginEmail", {
+      email,
+      password,
+    });
+    if(response) {
+      const user = {
+        token: response.token,
+        openId: response.openId,
+        userId: response.userId,
+        roleName: response.roleName,
+        sessionId: response.sessionId,
+        empId: response.empId,
+      };
+      setAuth(user);
+      // console.log(user)
+      const { roleName } = user;
+      console.log('roleName',roleName)
+      const route = roleName === "employer" ? "/employer" : "/employee";
+      navigate(route, { replace: true });
+
+      // router.replace(route);
+      // Toast.show({
+      //   content: 'Login successfully!',
+      // });
+    } else {
+      Toast.show({
+        content: 'Login failed. Please check your credentials.',
+      });
+    }
   };
 
 
