@@ -85,7 +85,7 @@ function AcceptedJobs(){
 
   return (
     <>
-    <div className={styles.jobItem} onClick={() => navigate('/jobdetail')}>
+    <div className={styles.jobItem}>
           <img
             className={styles.jobPic}
             src="src/assets/images/images/map.png"

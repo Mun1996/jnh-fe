@@ -108,7 +108,7 @@
 
 .emailAdress {
   display:flex;
-  margin:0 auto;
+  margin-left:2rem;
   padding-bottom:7px;
 }
 
@@ -124,7 +124,7 @@
 .rating {
   display:flex; 
   align-items: center;
-  margin:0 auto;
+  margin-left:2rem;
 }
 
 .setRate {
