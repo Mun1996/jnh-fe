@@ -8,7 +8,8 @@ import EmptyJobs from '../pages/Employee/EmptyJobs/EmptyJobs';
 import Pswforgetting from '../pages/Pswforgetting/Pswforgetting';
 import EmptyChats from '../pages/Employee/EmptyChats/EmptyChats';
 import EmptyProfile from '../pages/Employee/EmptyProfile/EmptyProfile';
-import JobDetail from '../pages/Employee/JobDetails/JobDetail'
+import JobDetail from '../pages/Employee/JobDetails/JobDetail';
+import AddressList from '../pages/Employee/AddressList/AddressList';
 import App from '../App';
 
 const router = createBrowserRouter([
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path:'jobdetail',
         element:<JobDetail />
+      },
+      {
+        path:'addresslist',
+        element:<AddressList />
       }
     ]
   }

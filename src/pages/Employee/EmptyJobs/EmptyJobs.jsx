@@ -76,33 +76,33 @@ const EmptyJobs = () => {
               <FilterPopup visible={visible5} onClose={() => setVisible5(false)} />
           </div>
           <div className={styles.jobMsg}>
-                <div className={styles.jobItem} onClick={() => navigate('/jobdetail')}>
-                  <img
-                    className={styles.jobPic}
-                    src="src/assets/images/images/map.png"
-                    alt="job picture"
-                  />
-                  <div className={styles.jobContent}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <div className={styles.jobTitle}>Remote Home Baker</div>
-                      <div className={styles.jobDistance}>Open</div>
-                    </div>
-                    <div className={styles.jobDescription}>
-                      Make bread and cakes for nearby cafes
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between',marginTop:'5px' }}>
-                      <div className={styles.jobSalary}>1200 $/Month</div>
-                      <div className={styles.refreshTime}>2024-09-29 12:52:38</div>
-                    </div>
-                  </div>
+            <div className={styles.jobItem} onClick={() => navigate('/jobdetail')}>
+              <img
+                className={styles.jobPic}
+                src="src/assets/images/images/map.png"
+                alt="job picture"
+              />
+              <div className={styles.jobContent}>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <div className={styles.jobTitle}>Remote Home Baker</div>
+                  <div className={styles.jobDistance}>Open</div>
                 </div>
-                
-                {/* 当刷新不出新工作时
-                <div className={styles.noJob}>
-                    <img src="src\assets\images\images\no-data.png"></img>
-                    <p style={{margin:'1rem 0 0.5rem 0'}}>Sorry,there's no job nearby</p>
-                    <button className={styles.loopBtn}><LoopOutline /></button>
-                </div>*/}
+                <div className={styles.jobDescription}>
+                  Make bread and cakes for nearby cafes
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between',marginTop:'5px' }}>
+                  <div className={styles.jobSalary}>1200 $/Month</div>
+                  <div className={styles.refreshTime}>2024-09-29 12:52:38</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* 当刷新不出新工作时
+            <div className={styles.noJob}>
+                <img src="src\assets\images\images\no-data.png"></img>
+                <p style={{margin:'1rem 0 0.5rem 0'}}>Sorry,there's no job nearby</p>
+                <button className={styles.loopBtn}><LoopOutline /></button>
+            </div>*/}
           </div>
           <TabBar />
         </div>

@@ -1,0 +1,45 @@
+.addressListBar {
+  background-color: white;
+  border-bottom:1px solid #DCDCDC;
+  height:2rem;
+  padding:7px;
+  display:flex;
+  justify-content: space-between;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  align-items: center;
+}
+
+.returnBtn {
+  font-size: 20px;
+  margin-left:5px;
+}
+
+.pageTitle {
+  font-size: 17px;
+  font-weight:700;
+  margin:0;
+}
+
+.content {
+  padding:3.8rem 8px 10px 8px;/* 为底部*/
+  background-color: #F8F8F8;
+  min-height:100vh;
+}
+
+.newAddressBtn {
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:10px;
+  font-size:15px;
+  font-weight:700;
+  color:white;
+  box-shadow: -5px 10px 10px #D3D3D3;
+  position:fixed;
+  bottom:1rem;
+  left:1.5rem;
+  right:1.5rem;
+}

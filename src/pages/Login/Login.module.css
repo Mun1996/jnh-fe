@@ -98,11 +98,6 @@
   box-shadow: -5px 10px 10px #D3D3D3;
 }
 
-.loginEnter:active {
-  box-shadow: -5px 10px 10px #BFBFBF;
-}
-
-
 .forgetpsw {
   cursor: pointer;
   background-color:white;

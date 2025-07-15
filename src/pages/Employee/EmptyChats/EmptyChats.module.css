@@ -12,6 +12,10 @@
   background-color: white;
   z-index:100;
   padding:7px;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
 }
 
 .title {
@@ -21,7 +25,7 @@
 }
 
 .content {
-  padding:5px 15px 0 15px;
+  padding:55px 15px 0 15px;
   margin:0;
 }
 
