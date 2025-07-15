@@ -7,7 +7,7 @@ import { LoopOutline } from 'antd-mobile-icons';
 import { FloatingPanel } from 'antd-mobile';
 
 function JobPanel() {
-  const anchors = [window.innerHeight * 0.3, window.innerHeight * 0.6, window.innerHeight * 0.85];
+  const anchors = [window.innerHeight - 120, window.innerHeight - 325];
 
   const [activeTab, setActiveTab] = useState('upcoming');
 
