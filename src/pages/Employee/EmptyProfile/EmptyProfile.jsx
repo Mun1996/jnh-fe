@@ -1,4 +1,6 @@
-import React,{ useState }from 'react';
+import { useRequest } from '../../../utils/request';
+import { useAuth } from "../../../contexts/AuthContext";
+import React,{ useState,useEffect }from 'react';
 import { useNavigate } from 'react-router-dom';
 import TabBar from '../../../components/TabBar/TabBar';
 import styles from './EmptyProfile.module.css';
@@ -19,52 +21,73 @@ const ProfileBar = () =>{
 }
 
 const PersonalInfo = () => {
+  const { user } = useAuth();
+  const request = useRequest();
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  localStorage.getItem('user');
+  console.log(localStorage.getItem('user'));
+
+  useEffect(() => {
+
+    async function fetchProfile() {
+      try {
+        console.log('正在获取数据');
+        const res = await request.get(`/api/Employees/${empId}`);
+        console.log('profile 数据：', res);
+        setProfile(res);
+      } catch (err) {
+        console.error('获取用户资料失败：', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProfile();
+  }, [request]);
+
+  if (loading) return <div>Loading...</div>;
+  if (!user) return <div>error</div>;
+
   return (
     <div className={styles.personalInfo}>
       <div className={styles.PersonalPlate}>
         <div className={styles.personalImg}>
           <img
             className={styles.PersonalPic}
-            src="src/assets/images/images/map.png"
+            src={user.avatarUrl || '/assets/images/default-avatar.png'}
             alt="job picture"
           />
           <div className={styles.changepic}>
-            <CameraOutline style={{fontSize:'1.4rem',color:'#00C26F'}}/>
+            <CameraOutline style={{ fontSize: '1.4rem', color: '#00C26F' }} />
           </div>
         </div>
         <div className={styles.personalities}>
-          <div className={styles.name}>Landon Anderson</div>
-          <div className={styles.nricID}>
-            NRIC:S3117370Y
-          </div>
-          <div className={styles.role}>
-            Role:Employee
-          </div>
-          <div className={styles.reviewCount}>
-            Review Count:0
-          </div>   
+          <div className={styles.name}>{user.name}</div>
+          <div className={styles.nricID}>NRIC: {user.nric}</div>
+          <div className={styles.role}>Role: {user.roleName}</div>
+          <div className={styles.reviewCount}>Review Count: {user.reviewCount}</div>
         </div>
       </div>
       <div className={styles.emailAdress}>
-        <div style={{ fontSize: '15px',fontWeight:'600',marginRight:'10px'}}>Email:</div>
-        <div className={styles.personalEmail}>eddie.khor@gmail.com</div>
-        <div className={styles.setEmailAddress}><RightOutline style={{color:'#00C26F'}}/>Bound</div>
+        <div style={{ fontSize: '15px', fontWeight: '600', marginRight: '10px' }}>Email:</div>
+        <div className={styles.personalEmail}>{user.email}</div>
+        <div className={styles.setEmailAddress}>
+          <RightOutline style={{ color: '#00C26F' }} />
+          Bound
+        </div>
       </div>
       <div className={styles.rating}>
-        <div style={{ fontSize: '15px',fontWeight:'600',marginRight:'10px'}}>
-          Rating:
-        </div>
-        <Rate readOnly value={4} style={{marginRight:'10px'}}/>
-        <div style={{fontSize:'17px'}}>
-          4.0
-        </div>
+        <div style={{ fontSize: '15px', fontWeight: '600', marginRight: '10px' }}>Rating:</div>
+        <Rate readOnly value={user.rating} style={{ marginRight: '10px' }} />
+        <div style={{ fontSize: '17px' }}>{user.rating}</div>
         <div className={styles.setRate}>
-          <RightOutline style={{color:'#00C26F'}}/>
-          </div>
+          <RightOutline style={{ color: '#00C26F' }} />
+        </div>
       </div>
     </div>
   );
-}
+};
+
 
 function CheckBtn() {
   const [checked, setChecked] = useState(false);
