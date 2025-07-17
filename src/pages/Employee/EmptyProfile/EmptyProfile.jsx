@@ -25,25 +25,26 @@ const PersonalInfo = () => {
   const request = useRequest();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
-  localStorage.getItem('user');
-  console.log(localStorage.getItem('user'));
+  console.log('user',user);
 
-  useEffect(() => {
-
-    async function fetchProfile() {
-      try {
+  const getUser = async () => {
+    try {
         console.log('正在获取数据');
-        const res = await request.get(`/api/Employees/${empId}`);
+        const res = await request.get(`/api/Employees/${user.empId}`);
         console.log('profile 数据：', res);
-        setProfile(res);
+        if(res) {
+          setProfile(res);
+        }
       } catch (err) {
         console.error('获取用户资料失败：', err);
       } finally {
         setLoading(false);
       }
-    }
-    fetchProfile();
-  }, [request]);
+  }
+
+  useEffect(() => {
+    getUser()
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (!user) return <div>error</div>;
