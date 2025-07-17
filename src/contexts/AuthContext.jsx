@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 
   const clearAuth = async () => {
     try {
-      await request.post("/auth/logout");
+      // await request.post("/auth/logout");
       localStorage.removeItem("user");
       setUser(null);
       navigate("/", { replace: true });

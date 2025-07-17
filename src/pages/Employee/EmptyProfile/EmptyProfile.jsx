@@ -6,15 +6,21 @@ import TabBar from '../../../components/TabBar/TabBar';
 import styles from './EmptyProfile.module.css';
 import { AddressBookFill,ArrowDownCircleOutline,RightOutline,CameraOutline,CheckOutline } from 'antd-mobile-icons';
 import { Rate } from 'antd-mobile';
+import setting from "../../../../data/setting.json";
 
 const ProfileBar = () =>{
+  const { clearAuth } = useAuth();
+
+  const handleLogoutPress = () => {
+    clearAuth();
+  };
   const navigate = useNavigate();
 
   return (
     <div className={styles.profileBar}>
       <AddressBookFill className={styles.addressBtn} onClick={() => navigate('/addresslist')}/>
       <p className={styles.pageTitle}>Profile</p>
-      <ArrowDownCircleOutline className={styles.exitBtn}/>
+      <ArrowDownCircleOutline className={styles.exitBtn} onClick={handleLogoutPress}/>
     </div>
   );
 }
@@ -47,14 +53,13 @@ const PersonalInfo = () => {
 
   if (loading) return <div>Loading...</div>;
   if (!user) return <div>error</div>;
-
   return (
     <div className={styles.personalInfo}>
       <div className={styles.PersonalPlate}>
         <div className={styles.personalImg}>
           <img
             className={styles.PersonalPic}
-            src={profile.avatarPath}
+            src={setting.IMG_BASE_URL + profile.avatarPath}
             alt="job picture"
           />
           <div className={styles.changepic}>
