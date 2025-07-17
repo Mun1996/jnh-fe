@@ -7,7 +7,6 @@ import styles from './EmptyProfile.module.css';
 import { AddressBookFill,ArrowDownCircleOutline,RightOutline,CameraOutline,CheckOutline } from 'antd-mobile-icons';
 import { Rate } from 'antd-mobile';
 
-
 const ProfileBar = () =>{
   const navigate = useNavigate();
 
@@ -55,7 +54,7 @@ const PersonalInfo = () => {
         <div className={styles.personalImg}>
           <img
             className={styles.PersonalPic}
-            src={user.avatarUrl || '/assets/images/default-avatar.png'}
+            src={profile.avatarPath}
             alt="job picture"
           />
           <div className={styles.changepic}>
@@ -63,15 +62,15 @@ const PersonalInfo = () => {
           </div>
         </div>
         <div className={styles.personalities}>
-          <div className={styles.name}>{user.name}</div>
-          <div className={styles.nricID}>NRIC: {user.nric}</div>
-          <div className={styles.role}>Role: {user.roleName}</div>
-          <div className={styles.reviewCount}>Review Count: {user.reviewCount}</div>
+          <div className={styles.name}>{profile.employeeName}</div>
+          <div className={styles.nricID}>NRIC: {profile.nric}</div>
+          <div className={styles.role}>Role: {profile.user.role}</div>
+          <div className={styles.reviewCount}>Review Count: {profile.averageRatings.reviewCount}</div>
         </div>
       </div>
       <div className={styles.emailAdress}>
         <div style={{ fontSize: '15px', fontWeight: '600', marginRight: '10px' }}>Email:</div>
-        <div className={styles.personalEmail}>{user.email}</div>
+        <div className={styles.personalEmail}>{profile.user.email}</div>
         <div className={styles.setEmailAddress}>
           <RightOutline style={{ color: '#00C26F' }} />
           Bound
@@ -79,8 +78,8 @@ const PersonalInfo = () => {
       </div>
       <div className={styles.rating}>
         <div style={{ fontSize: '15px', fontWeight: '600', marginRight: '10px' }}>Rating:</div>
-        <Rate readOnly value={user.rating} style={{ marginRight: '10px' }} />
-        <div style={{ fontSize: '17px' }}>{user.rating}</div>
+        <Rate readOnly value={profile.averageRatings.averageRating} style={{ marginRight: '10px' }} />
+        <div style={{ fontSize: '17px' }}>{profile.averageRatings?.averageRating?.toFixed(1)}</div>
         <div className={styles.setRate}>
           <RightOutline style={{ color: '#00C26F' }} />
         </div>

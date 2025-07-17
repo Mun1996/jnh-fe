@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const request = useRequest();
   const navigate = useNavigate();
 
+  /*自动读取 localStorage 中的用户信息*/
   useEffect(() => {
     const toHome = (roleName) => {
       if (roleName === "employer") {
@@ -17,11 +18,11 @@ export const AuthProvider = ({ children }) => {
       } else if (roleName === "employee") {
         navigate("/employee", { replace: true });
       }
-    };
+    };/*判断身份*/
 
     const loadUserData = () => {
       try {
-        const storedUser = localStorage.getItem("user");
+        const storedUser = localStorage.getItem("user");/*取ID*/
         if (storedUser) {
           const parsedUser = JSON.parse(storedUser);
           setUser(parsedUser);
@@ -47,7 +48,7 @@ export const AuthProvider = ({ children }) => {
   const setUserData = (userData) => {
     try {
       const updatedUser = { ...user, ...userData };
-      localStorage.setItem("user", JSON.stringify(updatedUser));
+      localStorage.setItem("user", JSON.stringify(updatedUser));/*登录后保存用户信息*/
       setUser(updatedUser);
     } catch (error) {
       console.error("Failed to update user data", error);
