@@ -10,6 +10,7 @@ import EmptyChats from '../pages/Employee/EmptyChats/EmptyChats';
 import EmptyProfile from '../pages/Employee/EmptyProfile/EmptyProfile';
 import JobDetail from '../pages/Employee/JobDetails/JobDetail';
 import AddressList from '../pages/Employee/AddressList/AddressList';
+import NewAddress from '../pages/Employee/NewAddress/NewAddress';
 import App from '../App';
 
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path:'addresslist',
         element:<AddressList />
+      },
+      {
+        path:'newaddress',
+        element:<NewAddress />
       }
     ]
   }

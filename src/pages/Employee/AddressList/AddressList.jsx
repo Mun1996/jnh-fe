@@ -61,7 +61,7 @@ const AddressListItems = () => {
 }
 
 const AddressList = () => {
-
+  const navigate = useNavigate();
   return (
    <div className={styles.container}>
     <AddressListBar />
@@ -69,7 +69,7 @@ const AddressList = () => {
       <AddressListItems />
       <AddressListItems />
       <AddressListItems />
-      <button className={styles.newAddressBtn}>Add Address</button>
+      <button className={styles.newAddressBtn} onClick={() => navigate('/newaddress')}>Add Address</button>
     </div>
    </div>
   );

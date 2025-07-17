@@ -1,0 +1,131 @@
+.addressListBar {
+  background-color: white;
+  border-bottom:1px solid #DCDCDC;
+  height:2rem;
+  padding:7px;
+  display:flex;
+  justify-content: space-between;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  align-items: center;
+}
+
+.returnBtn {
+  font-size: 20px;
+  margin-left:5px;
+}
+
+.pageTitle {
+  font-size: 17px;
+  font-weight:700;
+  margin:0;
+}
+
+.container {
+  padding:48px 1.5rem 70px 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.pageContext {
+  text-align: left;
+  font-size: 18px;
+  font-weight:700;
+}
+
+.title {
+  font-size: 16px;
+  margin:0 0 10px 5px;
+  text-align:left;
+  font-weight: 700;
+}
+
+.postalcode,
+.block,
+.road,
+.unit,
+.addressname
+{
+  padding:0.4rem;
+  margin-bottom:10px;  
+  border:1.3px solid #E3E3E3;
+  border-radius:4px;
+}
+
+/*set as default*/
+.customBox {
+  width: 13px;
+  height: 13px;
+  border: 2px solid #00C26F;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checked {
+  background-color: #00C26F;
+  border-color: #00C26F;
+  color: white;
+}
+
+.checkmark {
+  font-size: 1.3rem;
+}
+
+.editAddressBtn {
+  width:100%;
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:13px;
+  font-size:15px;
+  font-weight:700;
+  color:white;
+  box-shadow: -5px 10px 10px #D3D3D3;
+}
+
+/**/
+.buildingBar {
+  display:flex;
+  align-items: center;
+  padding:10px
+}
+
+.buildingSelector {
+  border:2px solid #E3E3E3;
+  border-radius:7px;
+  /* height:40px; */
+  /*max-width: 75vw;*/ 
+  padding: 0 10px;
+  margin-bottom:10px;
+}
+
+.buildingIcon {
+  width: 30px;
+  margin-right: 10px;
+}
+.buildingDropdown {
+  width: 100%;
+}
+
+.dropdownTitle {
+  font-size:15px;
+  color:#3E4241;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buildingList {
+  padding: 7px;
+}
+
+.buildingOption {
+  padding:5px;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #E6E6E6;
+}
