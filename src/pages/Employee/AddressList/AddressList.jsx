@@ -1,4 +1,6 @@
-import React,{ useState }from 'react';
+import { useRequest } from '../../../utils/request';
+import { useAuth } from "../../../contexts/AuthContext";
+import React, { useEffect,useState }from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AddressList.module.css';
 import { LeftOutline,DeleteOutline } from 'antd-mobile-icons';
@@ -16,40 +18,58 @@ const AddressListBar = () =>{
 }
 
 const AddressListItems = () => {
-    const [addressData] = useState([
-      {
-        id: 1,
-        name: 'Testing',
-        block: '1',
-        road: 'JALAN TEKAD',
-        building: 'FUYONG ESTATE',
-        postalcode:'010527',
-      },
-      {
-        id: 2,
-        name: 'Third Road',
-        block: '4',
-        road:'UPPER SERANGOON VIEW',
-        building: 'HERON BAY',
-        postalcode:'684320',
-      },
-    ]);
+  const navigate = useNavigate();
 
-    const onRefresh = async () => {
-      await sleep(1000); 
-    };
+  const { user } = useAuth(); 
+  const request = useRequest(); 
+  const [addressData, setAddressData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  console.log('user',user);
+
+  let addressType = null;
+
+  if (user) {
+    if (user.roleName === "employee") {
+        addressType = "EmployeeAddresses";
+    } else if (user.roleName === "employer") {
+        addressType = "EmployerAddresses";
+    }
+  }  
+
+  const getAddresses = async () => {
+    try {
+      console.log('请求地址数据');
+      const res = await request.get(`/api/${addressType}?${user.role}Id=${user.empId}&pagesize=10&pagenumber=1&sortField=createdat&asc=false`);
+      console.log('地址数据：', res);
+      if (res) {   
+        setAddressData(res);
+      }
+      } catch (err) {
+      console.error('获取地址失败：', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+      getAddresses();
+  }, []); 
+
+  if (loading) return <div>Loading...</div>;
+  if (!user) return <div>Error: No user</div>;
 
   return (
     <>
       {addressData.map((address) => (
-        <div className={styles.addressDetails} key={address.id}>
+        <div className={styles.addressDetails} key={address.id} onClick={() => navigate('/editaddress')}>
           <div className={styles.addressContent}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div style={{ width: '17rem',marginBottom:'1rem'}}>
-                <div className={styles.addressName}>{address.name}</div>
-                <div className={styles.addressDetail}>{address.block},{address.road}</div>
+                <div className={styles.addressName}>{address.addressDesc}</div>
+                <div className={styles.addressDetail}>{address.blk},{address.road}</div>
                 <div className={styles.addressDetail}>{address.building}</div>
-                <div className={styles.addressDetail}>SINGAPORE {address.postalcode}</div>
+                <div className={styles.addressDetail}>SINGAPORE {address.postal}</div>
+                <div className={styles.addressDefault}>{address.isDefault && 'Default'}</div>
               </div>
               <div className={styles.deleteBtn}><DeleteOutline style={{color:'red',fontSize:'1.4rem'}}/></div>
             </div>
@@ -66,8 +86,6 @@ const AddressList = () => {
    <div className={styles.container}>
     <AddressListBar />
     <div className={styles.content}>
-      <AddressListItems />
-      <AddressListItems />
       <AddressListItems />
       <button className={styles.newAddressBtn} onClick={() => navigate('/newaddress')}>Add Address</button>
     </div>

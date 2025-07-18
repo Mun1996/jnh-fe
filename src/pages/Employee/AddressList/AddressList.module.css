@@ -81,6 +81,12 @@
   text-overflow: ellipsis;
 }
 
+.addressDefault {
+  color:#00C26F;
+  text-align:left;
+  font-size:15px;
+}
+
 .deleteBtn {
   display: flex;          
   align-items: center;    
