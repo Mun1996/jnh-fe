@@ -10,6 +10,7 @@
   left:0;
   right:0;
   align-items: center;
+  z-index: 1000;
 }
 
 .returnBtn {
@@ -90,4 +91,9 @@
 .deleteBtn {
   display: flex;          
   align-items: center;    
+}
+
+.antdDeleteBtn {
+  background-color: transparent;
+  border:none;
 }

@@ -4,6 +4,7 @@ import React, { useEffect,useState }from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AddressList.module.css';
 import { LeftOutline,DeleteOutline } from 'antd-mobile-icons';
+import { Button, Dialog, Space, Toast, Divider } from 'antd-mobile';
 
 const AddressListBar = () =>{
   const navigate = useNavigate();
@@ -71,7 +72,40 @@ const AddressListItems = () => {
                 <div className={styles.addressDetail}>SINGAPORE {address.postal}</div>
                 <div className={styles.addressDefault}>{address.isDefault && 'Default'}</div>
               </div>
-              <div className={styles.deleteBtn}><DeleteOutline style={{color:'red',fontSize:'1.4rem'}}/></div>
+              <div className={styles.deleteBtn}>
+                <Button
+                  className={styles.antdDeleteBtn}
+                  block
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    Dialog.confirm({
+                      content: 'Are you sure you want to delete this address?',
+                      cancelText: 'Cancel',
+                      confirmText: 'confirm',
+                      onConfirm: async () => {
+                        try {
+                          await request.delete(`/api/${addressType}/${address.addressId}`);
+                          setAddressData(prev => prev.filter(item => item.addressId !== address.addressId));
+
+                          Toast.show({
+                            icon: 'success',
+                            content: 'Deletion successful',
+                            position: 'bottom',
+                          });
+                        } catch (err) {
+                          console.error('删除失败：', err);
+                          Toast.show({
+                            icon: 'fail',
+                            content: 'Deletion failed',
+                            position: 'bottom',
+                          });
+                        }
+                      },
+                    });
+                  }}
+                ><DeleteOutline style={{ color: 'red', fontSize: '1.4rem' }} /></Button>
+              </div>
             </div>
           </div>
         </div>
