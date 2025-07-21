@@ -92,37 +92,37 @@ const NewAddress = () => {
   const [longitude, setLongitude] = useState('');
 
   
-    let addressType = null;
-  
-    if (user) {
-      if (user.roleName === "employee") {
-          addressType = "EmployeeAddresses";
-      } else if (user.roleName === "employer") {
-          addressType = "EmployerAddresses";
+  let addressType = null;
+
+  if (user) {
+    if (user.roleName === "employee") {
+        addressType = "EmployeeAddresses";
+    } else if (user.roleName === "employer") {
+        addressType = "EmployerAddresses";
+    }
+  }  
+
+  const getAddresses = async () => {
+    try {
+      console.log('请求地址数据');
+      const res = await request.get(`/api/${addressType}?${user.role}Id=${user.empId}&pagesize=10&pagenumber=1&sortField=createdat&asc=false`);
+      console.log('地址数据：', res);
+      if (res) {   
+        setAddressData(res);
       }
-    }  
-  
-    const getAddresses = async () => {
-      try {
-        console.log('请求地址数据');
-        const res = await request.get(`/api/${addressType}?${user.role}Id=${user.empId}&pagesize=10&pagenumber=1&sortField=createdat&asc=false`);
-        console.log('地址数据：', res);
-        if (res) {   
-          setAddressData(res);
-        }
-        } catch (err) {
-        console.error('获取地址失败：', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-  
-    useEffect(() => {
-        getAddresses();
-    }, []); 
-  
-    if (loading) return <div>Loading...</div>;
-    if (!user) return <div>Error: No user</div>;
+      } catch (err) {
+      console.error('获取地址失败：', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+      getAddresses();
+  }, []); 
+
+  if (loading) return <div>Loading...</div>;
+  if (!user) return <div>Error: No user</div>;
 
 /*postalcode接口*/
   const getOneMapSearch = async (userInput) => {
@@ -185,30 +185,29 @@ const NewAddress = () => {
     }
   };
 
-const handleSubmit = async () => {
-  try {
-    const fullAddress = `${block} ${road}, ${unit} ${selectedBuilding}, Singapore ${postalcode}`;
-    const payload = {
-      ownerId: user.empId,
-      addressDesc: addressname,
-      blk: block,
-      road: road,
-      unit: unit,
-      building: selectedBuilding,
-      postal: postalcode,
-      fullAddress: fullAddress,
-      isDefault: isDefault,
-      longitude: longitude, 
-      latitude: latitude
-    };
+  const handleSubmit = async () => {
+    try {
+      const fullAddress = `${block} ${road}, ${unit} ${selectedBuilding}, Singapore ${postalcode}`;
+      const payload = {
+        ownerId: user.empId,
+        addressDesc: addressname,
+        blk: block,
+        road: road,
+        unit: unit,
+        building: selectedBuilding,
+        postal: postalcode,
+        fullAddress: fullAddress,
+        isDefault: isDefault,
+        longitude: longitude, 
+        latitude: latitude
+      };
 
-    const res = await request.post(`/api/${addressType}`, payload);
-    console.log("提交成功：", res);
-  } catch (err) {
-    console.error("提交失败：", err);
-  }
-};
-
+      const res = await request.post(`/api/${addressType}`, payload);
+      console.log("提交成功：", res);
+    } catch (err) {
+      console.error("提交失败：", err);
+    }
+  };
 
   return (
     <div>
