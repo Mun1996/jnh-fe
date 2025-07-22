@@ -4,7 +4,7 @@ import React, { useEffect,useState }from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AddressList.module.css';
 import { LeftOutline,DeleteOutline } from 'antd-mobile-icons';
-import { Button, Dialog, Space, Toast, Divider } from 'antd-mobile';
+import { Button, Dialog,Toast } from 'antd-mobile';
 
 const AddressListBar = () =>{
   const navigate = useNavigate();
