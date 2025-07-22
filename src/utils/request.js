@@ -67,26 +67,38 @@ export function useRequest() {
     // 响应拦截器
     axiosInstance.interceptors.response.use(
       async (response) => {
+        console.log('response',response)
         if ([200, 201, 204].includes(response.status)) {
           return response.data;
         } else if (response.status === 401) {
+          // console.log(3333)
+          // const newToken = await refreshAuthToken();
+          // if (newToken) {
+          //   const config = response.config;
+          //   config.headers["Authorization"] = "Bearer " + newToken;
+          //   return axiosInstance(config);
+          // } else {
+          //   localStorage.removeItem("user");
+          //   navigate("/", { replace: true });
+          //   return Promise.reject(response);
+          // }
+        } else {
+          return Promise.reject(response);
+        }
+      },
+      async (error) => {
           const newToken = await refreshAuthToken();
           if (newToken) {
-            const config = response.config;
+            const config = error.config;
             config.headers["Authorization"] = "Bearer " + newToken;
             return axiosInstance(config);
           } else {
             localStorage.removeItem("user");
             navigate("/", { replace: true });
-            return Promise.reject(response);
+            return Promise.reject(error);
           }
-        } else {
-          return Promise.reject(response);
-        }
-      },
-      (error) => {
-        console.log("Response error", error);
-        return Promise.reject(error);
+        // console.log("Response error", error );
+        // return Promise.reject(error);
       }
     );
 

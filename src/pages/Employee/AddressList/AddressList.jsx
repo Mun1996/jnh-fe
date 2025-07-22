@@ -62,7 +62,7 @@ const AddressListItems = () => {
   return (
     <>
       {addressData.map((address) => (
-        <div className={styles.addressDetails} key={address.id} onClick={() => navigate('/editaddress', { state: { address } })}>
+        <div key={address.addressId} className={styles.addressDetails} onClick={() => navigate('/editaddress', { state: { address } })}>
           <div className={styles.addressContent}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <div style={{ width: '17rem',marginBottom:'1rem'}}>

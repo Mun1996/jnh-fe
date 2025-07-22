@@ -75,6 +75,8 @@ function BuildingDropdown({ buildings = [], selected, onChange }) {
 }
 
 const EditAddress = () => {
+  const request = useRequest()
+   const { user } = useAuth();
   const [postalcode, setpostalcode] = useState('');
   const [block,setblock] = useState('');
   const [road,setroad] = useState('');
@@ -91,6 +93,7 @@ const EditAddress = () => {
   /*根据传入的数据接入初始值*/
   const location = useLocation();
   const { address } = location.state || {};
+  console.log('location',address)
 
   /*postalcode接口*/
   const getOneMapSearch = async (userInput) => {
@@ -170,8 +173,9 @@ const EditAddress = () => {
      
   const handleSubmit = async () => {
     try {
-      const fullAddress = `${block} ${road}, ${unit} ${selectedBuilding}, Singapore ${postalcode}`;
-      const payload = {
+      const addressType ="EmployeeAddresses"
+      const params = {
+        addressId: address.addressId,
         ownerId: user.empId,
         addressDesc: addressname,
         blk: block,
@@ -179,13 +183,11 @@ const EditAddress = () => {
         unit: unit,
         building: selectedBuilding,
         postal: postalcode,
-        fullAddress: fullAddress,
-        isDefault: isDefault,
         longitude: longitude, 
-        latitude: latitude
-      };
-
-      const res = await request.post(`/api/${addressType}`, payload);
+        latitude: latitude,
+        isDefault: isDefault,
+      }
+      const res = await request.put(`/api/${addressType}/${address.addressId}`,params)
       console.log("提交成功：", res);
     } catch (err) {
       console.error("提交失败：", err);
