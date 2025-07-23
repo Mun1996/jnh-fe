@@ -1,5 +1,6 @@
 import { useRequest } from '../../../utils/request';
 import { useAuth } from "../../../contexts/AuthContext";
+import axios from 'axios';
 import React,{ useState,useEffect }from 'react';
 import { Input } from 'antd-mobile';
 import { useNavigate,useLocation } from 'react-router-dom';
@@ -61,35 +62,35 @@ function BuildingDropdown({buildings,selectedBuilding,onSelect}) {
 /*完整page/父容器 */
 const EditAddress = () => {
 {/*接入employee address数据库(已成功，无报错）*/}
-    const { user } = useAuth();
-    const request = useRequest();
-    const [addressData,setAddressData] = useState([]);
-    const [loading,setLoading] = useState(true);
+  const { user } = useAuth();
+  const request = useRequest();
+  const [addressData,setAddressData] = useState([]);
+  const [loading,setLoading] = useState(true);
 
 {/*路由传递从addresslistItem中包含的所有信息*/}
-    const location = useLocation();
-    const { address } = location.state || {}; 
+  const location = useLocation();
+  const { address } = location.state || {}; 
 
 {/*保存所有值的信息*/} 
-    const [addressId, setAddressId] = useState(null);
-    const [postalcode, setpostalcode] = useState('');
-    const [block,setblock] = useState('');
-    const [road,setroad] = useState('');
-    const [buildings, setbuildings] = useState([]); //地址可能有多个，故设置为数组
-    const [selectedBuilding, setSelectedBuilding] = useState('');//下拉表单中的buildings状态
-    const [unit,setunit] = useState('');
-    const [addressname,setaddressname] = useState('');
-    const [isDefault, setIsDefault] = useState(false);//设置初始值为false，（（需要后续传入按钮根据按钮状态修改！））
-    const [latitude, setLatitude] = useState('');//暗含，页面上不显示
-    const [longitude, setLongitude] = useState('');//暗含，页面上不显示
+  const [addressId, setAddressId] = useState(null);
+  const [postalcode, setpostalcode] = useState('');
+  const [block,setblock] = useState('');
+  const [road,setroad] = useState('');
+  const [buildings, setbuildings] = useState([]); //地址可能有多个，故设置为数组
+  const [selectedBuilding, setSelectedBuilding] = useState('');//下拉表单中的buildings状态
+  const [unit,setunit] = useState('');
+  const [addressname,setaddressname] = useState('');
+  const [isDefault, setIsDefault] = useState(false);//设置初始值为false，（（需要后续传入按钮根据按钮状态修改！））
+  const [latitude, setLatitude] = useState('');//暗含，页面上不显示
+  const [longitude, setLongitude] = useState('');//暗含，页面上不显示
 //按钮切换函数
-    const handleCheckDefault = () => {
-      setIsDefault(prev => !prev);
-      };
+  const handleCheckDefault = () => {
+    setIsDefault(prev => !prev);
+    };
 //buildings选项切换函数
-      const handleBuildingSelect = (building) => {
-        setSelectedBuilding(building);
-      };
+  const handleBuildingSelect = (building) => {
+    setSelectedBuilding(building);
+  };
 {/*当 address 状态变量发生变化时，自动填充表单字段。*/}
   useEffect(() => {
     if (address) {
@@ -118,71 +119,70 @@ const EditAddress = () => {
   }, [address]);
 
 {/*接入employee address数据库(已成功，无报错）*/}
-    let addressType = null;
-    
-    if (user) {
-      if (user.roleName === "employee") {
-          addressType = "EmployeeAddresses";
-      } else if (user.roleName === "employer") {
-          addressType = "EmployerAddresses";
+  let addressType = null;
+  
+  if (user) {
+    if (user.roleName === "employee") {
+        addressType = "EmployeeAddresses";
+    } else if (user.roleName === "employer") {
+        addressType = "EmployerAddresses";
+    }
+  }  
+  const getAddresses = async () => {
+    try {
+      console.log('请求地址数据');
+      const res = await request.get(`/api/${addressType}?${user.roleName}Id=${user.empId}&pagesize=10&pagenumber=1&sortField=createdat&asc=false`);
+      console.log('地址数据：', res);
+      if (res) {   
+        setAddressData(res);
       }
-    }  
-    const getAddresses = async () => {
-      try {
-        console.log('请求地址数据');
-        const res = await request.get(`/api/${addressType}?${user.role}Id=${user.empId}&pagesize=10&pagenumber=1&sortField=createdat&asc=false`);
-        console.log('地址数据：', res);
-        if (res) {   
-          setAddressData(res);
-        }
-        } catch (err) {
-        console.error('获取地址失败：', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    useEffect(() => {
-        getAddresses();
-    }, []); 
-    if (loading) return <div>Loading...</div>;
-    if (!user) return <div>Error: No user</div>;
+      } catch (err) {
+      console.error('获取地址失败：', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+      getAddresses();
+  }, []); 
+  if (loading) return <div>Loading...</div>;
+  if (!user) return <div>Error: No user</div>;
 {/*接入employee address数据库(已成功，无报错）*/}
 
 
 {/*提交所有数据到数据库*/}
-    const handleSubmit = async () => {
-      const token = user?.token;
+  const handleSubmit = async () => {
+    const token = user?.token;
 
-      const params = {
-        addressId: address.addressId,
-        ownerId: user.empId,
-        addressDesc: addressname,
-        blk: block,
-        road: road,
-        unit: unit,
-        building: selectedBuilding,
-        postal: postalcode,
-        longitude: longitude, 
-        latitude: latitude,
-        isDefault: isDefault,
-      }
-
-      try {
-        // 发起 PUT 请求来更新指定地址的信息，确保添加请求体 updatedAddress
-        const response = await request.put(`/api/${addressType}/${addressId}`, params);
-       
-        Toast.show({
-          icon:'success',
-          content: 'Success',
-        });
-
-      } catch (error) {
-        // 如果发生错误，打印错误并给用户提示
-        console.error('Error updating address:', error);
-        alert('Error occurred while updating address. Please check your network connection.');
-      }
-
+    const params = {
+      addressId: address.addressId,
+      ownerId: user.empId,
+      addressDesc: addressname,
+      blk: block,
+      road: road,
+      unit: unit,
+      building: selectedBuilding,
+      postal: postalcode,
+      longitude: longitude, 
+      latitude: latitude,
+      isDefault: isDefault,
     }
+
+    try {
+      // 发起 PUT 请求来更新指定地址的信息，确保添加请求体 updatedAddress
+      const response = await request.put(`/api/${addressType}/${addressId}`, params);
+      
+      Toast.show({
+        icon:'success',
+        content: 'Success',
+      });
+
+    } catch (error) {
+      // 如果发生错误，打印错误并给用户提示
+      console.error('Error updating address:', error);
+      alert('Error occurred while updating address. Please check your network connection.');
+    }
+  }
 
 
 
@@ -206,8 +206,39 @@ const EditAddress = () => {
       throw error; // 向上传递错误
     }
   };
-{/**/}
-  
+{/*在postalcode输入六位就调用接口并相应更新页面对应的部分*/}
+  const postalCodeChange = async (value) => {
+    setpostalcode(value); // 每次输入都更新
+
+    if (value.length === 6) {
+      try {
+        const data = await getOneMapSearch(value);
+        const results = data?.results;
+
+        if (!results || results.length === 0) {
+          Toast.show({
+            icon: 'fail',
+            content: 'Postal code does not exist',
+          });
+          return;
+        }
+
+        const firstResult = results[0];
+        setblock(firstResult.BLK_NO || '');
+        setroad(firstResult.ROAD_NAME || '');
+        setbuildings([firstResult.BUILDING || '']);
+        setSelectedBuilding(firstResult.BUILDING || '');
+        setLatitude(firstResult.LATITUDE || '');
+        setLongitude(firstResult.LONGITUDE || '');
+
+      } catch (error) {
+        Toast.show({
+          icon: 'fail',
+          content: 'connect error',
+        });
+      }
+    }
+  };
 
   return (
     <div>
@@ -220,7 +251,7 @@ const EditAddress = () => {
           placeholder=''
           value={postalcode}
           className={styles.postalcode}
-          onChange={(e) => setpostalcode(e.target.value)}/>
+          onChange={postalCodeChange}/>
         </div>
         <div className={styles.blockBank}>
           <p className={styles.title}>Block</p>
@@ -228,7 +259,7 @@ const EditAddress = () => {
           placeholder=''
           value={block}
           className={styles.block}
-          onChange={blk => {setblock(blk)}}/>
+          onChange={setblock}/>
         </div>
 
         <div className={styles.roadBank}>
@@ -237,7 +268,7 @@ const EditAddress = () => {
           placeholder=''
           value={road}
           className={styles.road}
-          onChange={rd => {setroad(rd)}}/>
+          onChange={setroad}/>
         </div>
 
         <div className={styles.buildingBank}>
@@ -255,7 +286,7 @@ const EditAddress = () => {
           placeholder=''
           value={unit}
           className={styles.unit}
-          onChange={u => {setunit(u)}}/>
+          onChange={setunit}/>
         </div>
 
         <div className={styles.addressnameBank}>
@@ -264,7 +295,7 @@ const EditAddress = () => {
           placeholder=''
           value={addressname}
           className={styles.addressname}
-          onChange={an => {setaddressname(an)}}/>
+          onChange={setaddressname}/>
         </div>
 
         <div>
@@ -272,7 +303,7 @@ const EditAddress = () => {
             <div style={{margin:'0 0.7rem 0 0.7rem'}}>
               <CheckBtn   
                 isDefault={isDefault} 
-                onToggle={handleCheckDefault} />
+                onCheck={handleCheckDefault} />
             </div>
             <p style={{margin:'0',fontSize:'15px',fontWeight:'700',textAlign:'left'}}>Set as default</p>
           </div>

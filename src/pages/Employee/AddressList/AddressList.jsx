@@ -39,9 +39,7 @@ const AddressListItems = () => {
 
   const getAddresses = async () => {
     try {
-      console.log('请求地址数据');
-      const res = await request.get(`/api/${addressType}?${user.role}Id=${user.empId}&pagesize=10&pagenumber=1&sortField=createdat&asc=false`);
-      console.log('地址数据：', res);
+      const res = await request.get(`/api/${addressType}?${user.roleName}Id=${user.empId}&pagesize=10&pagenumber=1&sortField=createdat&asc=false`);
       if (res) {   
         setAddressData(res);
       }

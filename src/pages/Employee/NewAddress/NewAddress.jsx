@@ -6,7 +6,7 @@ import { Input } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom';
 import styles from './NewAddress.module.css';
 import { LeftOutline,CheckOutline } from 'antd-mobile-icons';
-import { Dropdown } from 'antd-mobile';
+import { Dropdown,Toast } from 'antd-mobile';
 
 
 const AddressEditBar = () =>{
@@ -83,7 +83,6 @@ const NewAddress = () => {
   const request = useRequest(); 
   const [addressData, setAddressData] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log('user',user);
 
 /*提交数据到数据库*/
   const [isDefault, setIsDefault] = useState(false);
@@ -139,7 +138,6 @@ const NewAddress = () => {
     });
       return response.data; // 返回结果数据
     } catch (error) {
-      console.error('请求 OneMap 地址失败:', error);
       throw error; // 向上传递错误
     }
   };
@@ -151,7 +149,6 @@ const NewAddress = () => {
     if (value.length === 6) {
       try {
         const data = await getOneMapSearch(value);
-        console.log('OneMap 返回数据：', data);
 
         if (data?.results && data.results.length > 0) {
           setAddressData(data);
@@ -174,7 +171,6 @@ const NewAddress = () => {
           setbuildings([]);
         }
       } catch (err) {
-        console.error('请求 OneMap 地址失败:', err);
         setHasSearchResult(false);
       }
     } else {
@@ -202,8 +198,11 @@ const NewAddress = () => {
         latitude: latitude
       };
 
-      const res = await request.post(`/api/${addressType}`, payload);
-      console.log("提交成功：", res);
+    const res = await request.post(`/api/${addressType}`, payload);
+    Toast.show({
+      icon: 'success',
+      content: 'success',
+    });
     } catch (err) {
       console.error("提交失败：", err);
     }
@@ -274,7 +273,7 @@ const NewAddress = () => {
             </div>
           </div>
 
-          <button className={styles.editAddressBtn} onClick={handleSubmit}>Edit Address</button>
+          <button className={styles.editAddressBtn} onClick={handleSubmit}>Add Address</button>
         </div>)}
       </div>
     </div>
