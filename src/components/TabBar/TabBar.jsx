@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './TabBar.module.css';
 import { HomeOutlined, CompassOutlined, MessageOutlined, UserOutlined } from '@ant-design/icons';
@@ -8,32 +9,57 @@ const TabBar = () => {
   const location = useLocation();
   const { pathname } = location;
 
-  const tabs = [
-    {
-      key: 'home',
-      title: '首页',
-      icon: <HomeOutlined />,
-      path: '/employee'
-    },
-    {
-      key: 'jobs',
-      title: '职位',
-      icon: <CompassOutlined />,
-      path: '/emptyJobs'
-    },
-    {
-      key: 'chats',
-      title: '消息',
-      icon: <MessageOutlined />,
-      path: '/emptyChats'
-    },
-    {
-      key: 'profile',
-      title: '我的',
-      icon: <UserOutlined />,
-      path: '/emptyProfile'
+  const { user } = useAuth();
+
+  let tabs = [];
+
+  if (user.roleName === 'employee'){
+    tabs=[
+      {
+        key: 'home',
+        title: '首页',
+        icon: <HomeOutlined />,
+        path: '/employee'
+      },
+      {
+        key: 'jobs',
+        title: '职位',
+        icon: <CompassOutlined />,
+        path: '/emptyJobs'
+      },
+      {
+        key: 'chats',
+        title: '消息',
+        icon: <MessageOutlined />,
+        path: '/emptyChats'
+      },
+      {
+        key: 'profile',
+        title: '我的',
+        icon: <UserOutlined />,
+        path: '/emptyProfile'
+      }];
+    } else {
+      tabs=[
+        {
+          key: 'home',
+          title: '首页',
+          icon: <HomeOutlined />,
+          path: '/employer'
+        },
+        {
+          key: 'chats',
+          title: '消息',
+          icon: <MessageOutlined />,
+          path: '/chats'
+        },
+        {
+          key: 'profile',
+          title: '我的',
+          icon: <UserOutlined />,
+          path: '/employerProfile'
+        }];
     }
-  ];
 
   const handleTabClick = (path) => {
     navigate(path);

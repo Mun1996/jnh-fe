@@ -1,12 +1,43 @@
-import React, { useState } from 'react';
+import { useRequest } from '../../../utils/request';
+import { useAuth } from "../../../contexts/AuthContext";
+import React, { useState,useEffect } from 'react';
 import styles from './NavBar.module.css';
 import { Dropdown } from 'antd-mobile';
 import { EnvironmentOutline } from 'antd-mobile-icons';
 
 function LocationDropdown() {
-  const [selectedLocation, setSelectedLocation] = useState('');
+   /*保存所有状态信息*/
+  const [locationList, setLocationList] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [loadingLocation, setLoadingLocation] = useState(true);
 
-  const locationOptions = ['Location 1', 'Location 2', 'Location 3'];
+  /*接入location数据库*/
+  const { user } = useAuth();
+  const request = useRequest();
+
+  const getLocation = async () => {
+    if (!user) return;
+
+    try {
+      console.log('请求员工位置信息');
+      const res = await request.get(`/api/Employees/${user.empId}`);
+      console.log('员工信息数据：', res);
+
+      if (res) {
+        setLocationList(res.addresses || []);
+        setSelectedLocation(res.defaultAddress || null);
+      }
+    } catch (err) {
+      console.error('获取员工位置失败：', err);
+    } finally {
+      setLoadingLocation(false);
+    }
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
 
   return (
     <Dropdown className={styles.locationSelector}>
@@ -14,18 +45,18 @@ function LocationDropdown() {
         key='location'
         title={
           <div className={styles.dropdownTitle}>
-            <span>{selectedLocation || 'LocationLocationLocationLocationLocationLocationLocationLocationLocationLocation'}</span>
+            <span>{selectedLocation?.fullAddress || 'Location'}</span>
           </div>
         }
       >
         <div className={styles.locationList}>
-          {locationOptions.map((loc, index) => (
+          {locationList.map((loc, index) => (
             <div
-              key={index}
+              key={loc.addressId || index}
               className={styles.locationOption}
               onClick={() => setSelectedLocation(loc)}
             >
-              {loc}
+              {loc.fullAddress}
             </div>
           ))}
         </div>

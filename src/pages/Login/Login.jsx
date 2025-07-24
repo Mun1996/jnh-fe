@@ -26,8 +26,11 @@ const HeaderBar = () => {
 
 const Login = () => {
   const { setAuth } = useAuth();
-  // const [email, setEmail] = useState('562172940@qq.com');
-  const [email, setEmail] = useState('songzewen1996@gmail.com');
+  // employee testEmail:songzewen1996@gmail.com
+  //          testPsw:admin123       
+  // employer testEmail:562172940@qq.com
+  //          testPsw：admin123
+  const [email, setEmail] = useState('562172940@qq.com');
   const [password, setPassword] = useState('admin123');
   const [visible, setVisible] = useState(false);
   const request = useRequest();

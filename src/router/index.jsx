@@ -12,6 +12,9 @@ import JobDetail from '../pages/Employee/JobDetails/JobDetail';
 import AddressList from '../pages/Employee/AddressList/AddressList';
 import NewAddress from '../pages/Employee/NewAddress/NewAddress';
 import EditAddress from '../pages/Employee/NewAddress/EditAddress';
+import JobPositions from '../pages/Employer/JobPositions/JobPositions';
+import Chats from '../pages/Employer/Chats/Chats';
+import EmployerProfile from '../pages/Employer/Profile/EmployerProfile';
 import App from '../App';
 
 const router = createBrowserRouter([
@@ -66,6 +69,18 @@ const router = createBrowserRouter([
       {
         path:'editaddress',
         element:<EditAddress />
+      },
+      {
+        path:'employer',
+        element:<JobPositions />
+      },
+      {
+        path:'chats',
+        element:<Chats />
+      },
+      {
+        path:'employerProfile',
+        element:<EmployerProfile />
       }
     ]
   }
