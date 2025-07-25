@@ -5,6 +5,7 @@ import TabBar from '../../../components/TabBar/TabBar';
 import styles from './JobPositions.module.css';
 import { Button, Modal } from 'antd-mobile';
 import { DownOutline,LoopOutline } from 'antd-mobile-icons'
+import setting from "../../../../data/setting.json";
 
 //    "employerName": "Fast Connect Network Solution Pte Ltd",
 //    "employerUen": "2017357337G",
@@ -66,7 +67,7 @@ const NavBar = ({ employerList, selectedEmployer, setSelectedEmployer }) => {
       <div className={styles.locationBar}>
         <div className={styles.infoImg}>
           <img
-            src={`/${selectedEmployer?.logoThumbnailPath}`}
+            src={setting.IMG_BASE_URL + `/${selectedEmployer?.logoThumbnailPath}`}
             alt="Employer Logo"
           />
         </div>
