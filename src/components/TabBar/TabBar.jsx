@@ -13,7 +13,7 @@ const TabBar = () => {
 
   let tabs = [];
 
-  if (user.roleName === 'employee'){
+  if (user?.roleName === 'employee'){
     tabs=[
       {
         key: 'home',

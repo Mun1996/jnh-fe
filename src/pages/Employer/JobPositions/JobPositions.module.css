@@ -1,0 +1,98 @@
+.bubbleToast {
+  flex:1;
+  width: 100%;
+}
+
+.infoItem {
+  display:flex;
+  border-bottom: 1px solid #EEEEEE;
+  padding:1rem 0 1rem 0;
+}
+
+.infoImgs {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.name {
+  color:#363636;
+  font-weight: 700;
+}
+
+.uen {
+  color:#686868;
+  font-weight:500;
+}
+/*弹窗按钮样式*/
+.buttonContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:100%;
+  min-width: 0;
+}
+
+.buttonText {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.iconRight {
+  flex-shrink: 0; 
+  margin-left: 0.5rem;
+}
+
+
+.infoImg {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right:1rem;
+  margin-left:0.7rem;
+}
+
+.locationBar {
+  display:flex;
+  padding: 10px;
+  align-items: center;
+}
+
+.InfoSelection {
+  flex:1;
+  min-width:0;
+}
+
+.navBar {
+  background-color: #00C26F;
+  border-bottom-left-radius:15px;
+  border-bottom-right-radius:15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+
+
+/*page页面*/
+.pageContainer {
+  padding:7rem 1rem 4rem 1rem;
+}
+
+.loopBtn{
+  background-color:transparent; ;
+  color:#00C26F;
+  font-size:20px;
+}
+
+.noDataDisplay {
+  margin-top: 8rem;
+}
