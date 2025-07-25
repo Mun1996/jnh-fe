@@ -10,13 +10,13 @@
   padding:1rem 0 1rem 0;
 }
 
-.infoImgs {
+.infoPic {
   width: 45px;
   height: 45px;
-  flex-shrink: 0;
   border-radius: 50%;
-  overflow: hidden;
-  margin-right: 1rem;
+  object-fit: contain;
+  object-position: center;
+  margin-right:1rem;
 }
 
 .name {

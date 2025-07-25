@@ -28,11 +28,8 @@ const InfoSelection = ({ employerList, selectedEmployer, setSelectedEmployer }) 
                     Modal.clear();
                   }}
                 >
-                  <div className={styles.infoImgs}>
-                    <img
-                      src={`/${employer.logoThumbnailPath || 'src/assets/images/images/map.png'}`}
-                      alt="logo"
-                    />
+                  <div>
+                    <img className={styles.infoPic} src={setting.IMG_BASE_URL + `/${employer.logoThumbnailPath}`} alt="logo"/>
                   </div>
                   <div>
                     <div className={styles.name}>{employer.employerName}</div>
@@ -67,6 +64,7 @@ const NavBar = ({ employerList, selectedEmployer, setSelectedEmployer }) => {
       <div className={styles.locationBar}>
         <div className={styles.infoImg}>
           <img
+            className={styles.infoPic}
             src={setting.IMG_BASE_URL + `/${selectedEmployer?.logoThumbnailPath}`}
             alt="Employer Logo"
           />
@@ -131,6 +129,5 @@ const JobPositions = () => {
     </div>
   );
 };
-
 
 export default JobPositions;
