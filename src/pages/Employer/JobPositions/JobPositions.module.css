@@ -5,6 +5,7 @@
 
 .infoItem {
   display:flex;
+  align-items: center;
   border-bottom: 1px solid #EEEEEE;
   padding:1rem 0 1rem 0;
 }
@@ -12,6 +13,7 @@
 .infoImgs {
   width: 45px;
   height: 45px;
+  flex-shrink: 0;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 1rem;
@@ -26,6 +28,7 @@
   color:#686868;
   font-weight:500;
 }
+
 /*弹窗按钮样式*/
 .buttonContent {
   display: flex;
@@ -79,8 +82,6 @@
   right: 0;
   z-index: 1000;
 }
-
-
 
 /*page页面*/
 .pageContainer {
