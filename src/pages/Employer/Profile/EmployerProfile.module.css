@@ -62,3 +62,40 @@
   flex: 1;
   word-break: break-word;
 }
+
+/*company list*/
+.list1 {
+  background-color: white;
+  border-radius: 12px;
+  border:2px solid #F1F1F1;
+  display:flex;
+  padding:1rem;
+  gap:1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.companyImg {
+  height:47px;
+  width:47px;
+  border:1px solid #DDDDDD;
+  border-radius: 7px;
+  align-items: center;
+}
+
+.text {
+  margin-top:3px;
+}
+
+.companyName {
+  font-weight:700;
+  font-size: 16px;
+  color:#333333;
+  text-align:left;
+}
+
+.companyUen {
+  margin-top: 2px;
+  color:#888888;
+  text-align: left;
+}

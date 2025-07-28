@@ -1,7 +1,11 @@
-import React from 'react';
+import React , { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRequest } from '../../../utils/request';
+import { useAuth } from "../../../contexts/AuthContext";
 import TabBar from '../../../components/TabBar/TabBar';
 import styles from './EmployerProfile.module.css';
-import { ArrowDownCircleOutline,RightOutline } from 'antd-mobile-icons';
+import { FloatingBubble } from 'antd-mobile';
+import { ArrowDownCircleOutline,RightOutline,AddOutline } from 'antd-mobile-icons';
 
 const PersonalInfo = () => {
 
@@ -28,21 +32,76 @@ const PersonalInfo = () => {
 
 
 const EmployerProfile = () => {
+    const navigate = useNavigate();
+    
+    const { user } = useAuth();
+    const request = useRequest();
+    const [employerList, setEmployerList] = useState([]);
+    const [selectedEmployer, setSelectedEmployer] = useState(null);
+
+    const [offset, setOffset] = useState({ x: -24, y: -24 })
+
+    useEffect(() => {
+      const getEmployers = async () => {
+        try {
+          const res = await request.get(`/api/Employers?userId=${user.userId}`);
+          if (res && res.length > 0) {
+            setEmployerList(res);
+            setSelectedEmployer(res[0]);
+          }
+        } catch (err) {
+          console.error('error:', err);
+        }
+      };
+  
+      if (user?.userId) getEmployers();
+    }, [user?.userId]);
 
   return (
     <div>
-      <div className={StyleSheet.navbar}>
+      <div className={styles.navbar}>
         <div className={styles.profileBar}>
           <div style={{width:'30px'}}></div>
           <p className={styles.pageTitle}>Profile</p>
           <ArrowDownCircleOutline className={styles.exitBtn} />
         </div>
       </div>
-        <div className={styles.pageContainer}>
+      <div className={styles.pageContainer}>
         <PersonalInfo />
         <div>
           <p style={{fontSize:'16px',fontWeight:'700',textAlign:'left',margin:'1rem 0 1rem 20px'}}>Company List</p>
+          <div className={styles.list1} onClick={() => navigate('/companydetail')}>
+            <div className='img'>
+              <img className={styles.companyImg} src="src/assets/images/images/map.png"/>
+            </div>
+            <div className={styles.text}>
+              <div className={styles.companyName}>Super Consulting Pte Ltd</div>
+              <div className={styles.companyUen}>UEN:2011411221E</div>
+            </div>
+          </div>
+          <div className={styles.list1} onClick={() => navigate('/companydetail')}>
+            <div className='img'>
+              <img className={styles.companyImg} src="src/assets/images/images/map.png"/>
+            </div>
+            <div className={styles.text}>
+              <div className={styles.companyName}>Super Consulting Pte Ltd</div>
+              <div className={styles.companyUen}>UEN:2011411221E</div>
+            </div>
+          </div>
         </div>
+        <FloatingBubble
+          axis='x'
+          magnetic='x'
+          style={{
+            '--initial-position-bottom': '70px',
+            '--initial-position-right': '24px',
+            '--edge-distance': '24px',
+            '--background':'black',
+          }}
+          onClick={() => navigate('/addcompany')}
+        >
+          <AddOutline fontSize={32} />
+        </FloatingBubble>
       </div>
     <TabBar />
     </div>
