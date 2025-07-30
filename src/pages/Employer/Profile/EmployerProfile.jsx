@@ -8,21 +8,47 @@ import { FloatingBubble } from 'antd-mobile';
 import { ArrowDownCircleOutline,RightOutline,AddOutline } from 'antd-mobile-icons';
 
 const PersonalInfo = () => {
+  const { user } = useAuth();
+  const request = useRequest();
+
+  const [employerList, setEmployerList] = useState([]);
+  const [selectedEmployer, setSelectedEmployer] = useState(null);
+
+  useEffect(() => {
+    const getEmployers = async () => {
+      try {
+        const res = await request.get(`/api/Employers?userId=${user.userId}`);
+        if (res && res.length > 0) {
+          setEmployerList(res);
+          setSelectedEmployer(res[0]); 
+        }
+      } catch (err) {
+        console.error('error:', err);
+      }
+    };
+
+    if (user?.userId) getEmployers();
+  }, [user?.userId]);
+
+  if (!selectedEmployer || !selectedEmployer.user) {
+    return null;
+  }
+  const { userName, email, role } = selectedEmployer.user;
 
   return (
     <div className={styles.personalInfo}>
       <div className={styles.infoRow}>
         <div className={styles.infoLabel}>Name:</div>
-        <div className={styles.infoValue}>James Bond</div>
+        <div className={styles.infoValue}>{userName}</div>
       </div>
       <div className={styles.infoRow}>
         <div className={styles.infoLabel}>Role:</div>
-        <div className={styles.infoValue}>Employer</div>
+        <div className={styles.infoValue}>{role}</div>
       </div>
       <div className={styles.infoRow}>
         <div className={styles.infoLabel}>Email:</div>
-        <div style={{ color: '#00C26F'}}>
-          562172940@qq.com
+        <div style={{ color: '#00C26F' }}>
+          {email}
           <RightOutline style={{ color: '#00C26F', marginLeft: 4 }} />
         </div>
       </div>
@@ -30,32 +56,10 @@ const PersonalInfo = () => {
   );
 };
 
-
 const EmployerProfile = () => {
-    const navigate = useNavigate();
-    
-    const { user } = useAuth();
-    const request = useRequest();
-    const [employerList, setEmployerList] = useState([]);
-    const [selectedEmployer, setSelectedEmployer] = useState(null);
-
-    const [offset, setOffset] = useState({ x: -24, y: -24 })
-
-    useEffect(() => {
-      const getEmployers = async () => {
-        try {
-          const res = await request.get(`/api/Employers?userId=${user.userId}`);
-          if (res && res.length > 0) {
-            setEmployerList(res);
-            setSelectedEmployer(res[0]);
-          }
-        } catch (err) {
-          console.error('error:', err);
-        }
-      };
-  
-      if (user?.userId) getEmployers();
-    }, [user?.userId]);
+  const navigate = useNavigate();
+{/*‘+’的按钮*/}
+  const [offset, setOffset] = useState({ x: -24, y: -24 })
 
   return (
     <div>
