@@ -31,3 +31,93 @@
   background-color: #F2F2F2;
   min-height:100vh;
 }
+
+.title {
+  font-size: 15px;
+  margin:0 0 3px 5px;
+  text-align:left;
+  font-weight: 700;
+}
+
+.jobname,
+.jobdescription,
+.minage,
+.daysInWeek,
+.companyName {
+  width:95%;
+  padding:0.4rem;
+  margin-bottom:10px;  
+  border:2px solid #E3E3E3;
+  border-radius:6px;
+  background-color: white;
+}
+
+.jobAddress,
+.jobCategory {
+  border:2px solid #E3E3E3;
+  border-radius:8px;
+  margin-bottom:10px;
+}
+
+.dropdownList {
+  padding:7px;
+}
+
+.dropdownItem {
+  padding:5px;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #E6E6E6;
+}
+
+/*日历样式区*/
+.choseDate {
+  border:2px solid #E3E3E3;
+  border-radius:8px;
+  text-align: left;
+  margin-bottom:10px;
+}
+
+.customDateInput {
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dateRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dateInput {
+  width: 50px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.separator {
+  font-size: 16px;
+  color: #333;
+}
+
+/*date样式*/
+.dateRow {
+  display:flex;
+}
+
+.addBtn {
+  width:100%;
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:40px;
+  font-size:15px;
+  font-weight:700;
+  color:white;
+  box-shadow: -5px 10px 10px #D3D3D3;
+}

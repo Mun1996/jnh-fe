@@ -27,7 +27,80 @@
 
 /*page*/
 .pagecontainer {
-  padding:3.8rem 1rem 75px 1rem;/* 为底部*/
+  padding: 3.8rem 1rem 0 1rem; 
   background-color: #F2F2F2;
-  min-height:100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*用户图片*/
+.personalImg {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  align-items: center;
+  margin-bottom: 2rem; /* 添加一些间距 */
+}
+
+.PersonalPic {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  border:5px solid #E3E3E3;
+  object-fit: cover;
+}
+
+.changepic {
+  position: absolute;
+  background-color: #E3E3E3;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: -0.5rem;
+  right: -0.5rem;
+}
+
+/**/
+.streetBank, 
+.cityBank,
+.postalCodeBank {
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 让子元素左对齐 */
+}
+
+.title {
+  font-weight:700;
+  font-size:14px;
+  margin:0 0 7px 0;
+}
+
+.street, 
+.city,
+.postalCode {
+  width:95%;
+  padding:0.4rem;
+  margin-bottom:10px;  
+  border:2px solid #E3E3E3;
+  border-radius:4px;
+  background-color: white;
+}
+
+/**/
+.SubmitBtn {
+  width:100%;
+  border-radius:13px;
+  background-color:#00C26F;
+  padding:1rem;
+  margin-top:50px;
+  font-size:15px;
+  font-weight:700;
+  color:white;
+  box-shadow: -5px 10px 10px #D3D3D3;
 }

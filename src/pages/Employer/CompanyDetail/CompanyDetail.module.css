@@ -26,7 +26,85 @@
 }
 
 .pagecontainer {
-  padding:3.8rem 1rem 75px 1rem;/* 为底部*/
-  background-color: #F2F2F2;
-  min-height:100vh;
+  padding: 3.8rem 1rem 0 1rem; 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.companyInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*用户图片*/
+.personalImg {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  align-items: center;
+  margin-bottom: 1.5rem; 
+}
+
+.PersonalPic {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  border:5px solid #E3E3E3;
+  object-fit: cover;
+}
+
+.changepic {
+  position: absolute;
+  background-color: #E3E3E3;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: -0.5rem;
+  right: -0.5rem;
+}
+
+/*用户信息*/
+.companyName {
+  font-weight: 700;
+  font-size:16px;
+}
+
+.employerUen {
+  color:#9D9D9D;
+  font-size:15px;
+}
+
+.reviewCount {
+  color:#9D9D9D;
+  font-size:15px;
+}
+
+.rating {
+  display:flex; 
+  align-items: center;
+  margin-left:2rem;
+}
+
+.setRate {
+  margin-left:10px;
+}
+
+/*如果没有任何job的信息*/
+.jobInfo {
+  
+}
+
+.loopBtn{
+  background-color:transparent; ;
+  color:#00C26F;
+  font-size:20px;
+}
+
+.noDataDisplay {
+  margin-top: 3rem;
 }
